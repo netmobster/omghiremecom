@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { supabase } from "@/integrations/supabase/client";
 import {
   Dialog,
   DialogContent,
@@ -157,15 +158,33 @@ const ProfilePage = () => {
     
     setIsSubmitting(true);
     
-    // Placeholder - will integrate with Cloud later
-    setTimeout(() => {
+    try {
+      const { data, error } = await supabase.functions.invoke('send-contact-email', {
+        body: {
+          name: formData.name,
+          email: formData.email,
+          message: formData.message || "No message provided",
+          subject,
+        },
+      });
+
+      if (error) throw error;
+
       toast({
         title: "Message received! 🎉",
         description: "I'll get back to you faster than you can say 'full-stack marketer'.",
       });
       setFormData({ name: "", email: "", message: "" });
+    } catch (error: any) {
+      console.error("Error sending email:", error);
+      toast({
+        title: "Oops!",
+        description: "Something went wrong. Try again or just email me directly!",
+        variant: "destructive",
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   const handleAreYouSingle = () => {
