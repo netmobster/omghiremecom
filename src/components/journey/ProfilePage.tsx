@@ -17,12 +17,13 @@ import {
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import wllArchitect from "@/assets/WLL_architect.png";
+import avatarEmoji from "@/assets/avatar-emoji.png";
 
 const avatarStages = [
-  { label: "Professional Jay", description: "The LinkedIn version", type: "illustrated" },
-  { label: "Real Jay", description: "The headshot", type: "linkedin" },
-  { label: "Realer Jay", description: "McDonald's vibes", type: "mcdonalds" },
-  { label: "Realest Jay", description: "Full send", type: "jumping" },
+  { label: "Professional Jay", description: "The LinkedIn version", type: "illustrated", image: avatarEmoji },
+  { label: "Real Jay", description: "The headshot", type: "linkedin", image: null },
+  { label: "Realer Jay", description: "McDonald's vibes", type: "mcdonalds", image: null },
+  { label: "Realest Jay", description: "Full send", type: "jumping", image: null },
 ];
 
 const uniqueThings = [
@@ -87,11 +88,21 @@ const ProfilePage = () => {
         <section className="text-center space-y-4 animate-fade-in">
           <div
             onClick={handleAvatarClick}
-            className="relative w-40 h-40 mx-auto rounded-full gradient-primary flex items-center justify-center cursor-pointer hover:scale-105 transition-transform group shadow-xl"
+            className="relative w-40 h-40 mx-auto rounded-full overflow-hidden cursor-pointer hover:scale-105 transition-transform group shadow-xl"
           >
-            <User className="w-20 h-20 text-primary-foreground" />
-            <div className="absolute inset-0 rounded-full bg-foreground/0 group-hover:bg-foreground/10 transition-colors flex items-center justify-center">
-              <span className="text-xs text-primary-foreground opacity-0 group-hover:opacity-100 transition-opacity font-medium">
+            {avatarStages[avatarIndex].image ? (
+              <img 
+                src={avatarStages[avatarIndex].image} 
+                alt={avatarStages[avatarIndex].label}
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <div className="w-full h-full gradient-primary flex items-center justify-center">
+                <User className="w-20 h-20 text-primary-foreground" />
+              </div>
+            )}
+            <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors flex items-center justify-center">
+              <span className="text-xs text-primary-foreground opacity-0 group-hover:opacity-100 transition-opacity font-medium drop-shadow-lg">
                 Click me!
               </span>
             </div>
