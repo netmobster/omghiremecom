@@ -222,11 +222,8 @@ const ProfilePage = () => {
             </div>
           </div>
           <div className="space-y-1">
-            <h1 className="text-3xl font-display font-bold text-foreground">Jeremy Wright</h1>
-            <p className="text-muted-foreground">{avatarStages[avatarIndex].description}</p>
-            <p className="text-xs text-muted-foreground">
-              Stage {avatarIndex + 1}/{avatarStages.length}: {avatarStages[avatarIndex].label}
-            </p>
+            <h1 className="text-3xl font-display font-bold text-foreground">Jeremy Wright - Full-Stack Marketer</h1>
+            <p className="text-muted-foreground">A real profile by a real boy, even if it's satire</p>
           </div>
         </section>
 
