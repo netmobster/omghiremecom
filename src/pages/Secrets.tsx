@@ -15,7 +15,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
 const Secrets = () => {
-  const { hasFound, totalFound, totalEggs } = useEasterEggs();
+  const { hasFound, totalFound, totalEggs, resetAll } = useEasterEggs();
   const [celebratedCompletion, setCelebratedCompletion] = useState(false);
   const [prizeOpen, setPrizeOpen] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -281,6 +281,28 @@ const Secrets = () => {
             : "Hint: Some secrets are hidden in plain sight. Others require a bit more... persistence."
           }
         </p>
+
+        {/* Reset button */}
+        {totalFound > 0 && (
+          <div className="text-center pt-4 border-t border-border/50">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => {
+                resetAll();
+                setCelebratedCompletion(false);
+                setPrizeOpen(false);
+                toast({
+                  title: "🔄 Achievements reset!",
+                  description: "Time to hunt for eggs all over again. Good luck!",
+                });
+              }}
+              className="text-muted-foreground hover:text-destructive"
+            >
+              Reset all achievements
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );
