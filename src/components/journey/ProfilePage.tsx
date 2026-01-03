@@ -472,8 +472,8 @@ const ProfilePage = () => {
                     <Button type="button" onClick={() => handleSubmit("WTF - Confused but intrigued")} disabled={isSubmitting} variant="outline" className="w-full py-4 text-sm hover:bg-primary hover:text-primary-foreground transition-all">
                       WTF, I want to talk but IDK why
                     </Button>
-                    <Button type="button" onClick={() => handleSubmit("Sigh, okay fine")} disabled={isSubmitting} variant="outline" className="w-full py-4 text-sm hover:bg-secondary hover:text-secondary-foreground transition-all">
-                      Sigh... okay, fine
+                    <Button type="button" onClick={() => handleSubmit("Sigh, okay fine!")} disabled={isSubmitting} variant="outline" className="w-full py-4 text-sm hover:bg-secondary hover:text-secondary-foreground transition-all">
+                      Sigh... okay, fine!
                     </Button>
                     <Button type="button" onClick={handleAreYouSingle} variant="outline" className="w-full py-4 text-sm hover:bg-destructive hover:text-destructive-foreground transition-all">
                       Are you single?
