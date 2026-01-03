@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Code2, Linkedin, FileText, Briefcase, User, UserCircle } from "lucide-react";
+import { Code2, Linkedin, FileText, Briefcase, User, UserCircle, Home } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -11,11 +11,11 @@ const Footer = () => {
       </div>
       <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-sm text-muted-foreground flex-wrap">
         <Link 
-          to="/about" 
+          to="/" 
           className="flex items-center gap-1.5 hover:text-foreground transition-colors"
         >
-          <UserCircle className="w-4 h-4" />
-          About Jeremy
+          <Home className="w-4 h-4" />
+          Home
         </Link>
         <span className="hidden sm:inline text-muted-foreground/30">•</span>
         <Link 
@@ -23,7 +23,7 @@ const Footer = () => {
           className="flex items-center gap-1.5 hover:text-foreground transition-colors"
         >
           <User className="w-4 h-4" />
-          Profile
+          The Profile
         </Link>
         <span className="hidden sm:inline text-muted-foreground/30">•</span>
         <Link 
