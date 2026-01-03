@@ -98,7 +98,6 @@ const ProfilePage = () => {
   const {
     toast
   } = useToast();
-
   useEffect(() => {
     const handleScroll = () => {
       setShowBackToTop(window.scrollY > 400);
@@ -106,9 +105,11 @@ const ProfilePage = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   };
   const handleCopyEmail = () => {
     navigator.clipboard.writeText("wearecleardigital@gmail.com");
@@ -446,7 +447,7 @@ const ProfilePage = () => {
               <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm">
                 <li className="flex items-start gap-2 sm:gap-3">
                   <Shield className="w-4 h-4 sm:w-5 sm:h-5 text-success shrink-0 mt-0.5" />
-                  <span className="text-foreground">You want someone who chases their dreams without hurting others</span>
+                  <span className="text-foreground">You want someone who chases their dreams without screwing with others</span>
                 </li>
                 <li className="flex items-start gap-2 sm:gap-3">
                   <Telescope className="w-4 h-4 sm:w-5 sm:h-5 text-success shrink-0 mt-0.5" />
@@ -483,7 +484,7 @@ const ProfilePage = () => {
                 </li>
                 <li className="flex items-start gap-2 sm:gap-3">
                   <Compass className="w-4 h-4 sm:w-5 sm:h-5 text-destructive shrink-0 mt-0.5" />
-                  <span className="text-foreground">You want a "Marketing Manager" to execute a pre-defined checklist; hire me if you need an Architect to build the checklist</span>
+                  <span className="text-foreground">You want a "Marketing Manager" to execute a pre-defined checklist; hire me if you need an Architect to build for your dream</span>
                 </li>
               </ul>
             </CardContent>
@@ -494,9 +495,7 @@ const ProfilePage = () => {
         <section className="space-y-4 animate-fade-in" style={{
         animationDelay: "0.6s"
       }}>
-          <h2 className="text-xl sm:text-2xl font-display font-bold text-foreground text-center">
-            Let's Chat
-          </h2>
+          <h2 className="text-xl sm:text-2xl font-display font-bold text-foreground text-center">Let's Chat!</h2>
           <Card className="overflow-hidden">
             <CardContent className="p-4 sm:p-6">
               <div className="space-y-4">
@@ -563,14 +562,7 @@ const ProfilePage = () => {
       </div>
 
       {/* Back to Top Button */}
-      <button
-        onClick={scrollToTop}
-        className={cn(
-          "fixed bottom-6 right-6 w-12 h-12 rounded-full bg-primary text-primary-foreground shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-xl z-50",
-          showBackToTop ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
-        )}
-        aria-label="Back to top"
-      >
+      <button onClick={scrollToTop} className={cn("fixed bottom-6 right-6 w-12 h-12 rounded-full bg-primary text-primary-foreground shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-xl z-50", showBackToTop ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none")} aria-label="Back to top">
         <ChevronUp className="w-5 h-5" />
       </button>
     </div>;
