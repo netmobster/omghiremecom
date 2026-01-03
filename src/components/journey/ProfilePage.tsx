@@ -194,8 +194,8 @@ const ProfilePage = () => {
             </div>
           </div>
           <div className="space-y-1">
-            <h1 className="text-3xl font-display font-bold text-foreground">Jeremy Wright - Full-Stack Marketer</h1>
-            <p className="text-muted-foreground">A real profile by a real boy, even if it's satire</p>
+            <h1 className="text-2xl sm:text-3xl font-display font-bold text-foreground">Jeremy Wright - Full-Stack Marketer</h1>
+            <p className="text-sm sm:text-base text-muted-foreground">A real profile by a real boy, even if it's satire</p>
           </div>
         </section>
 
@@ -242,16 +242,18 @@ const ProfilePage = () => {
         animationDelay: "0.1s"
       }}>
           <Card className="overflow-hidden border-2 border-primary/20 hover:border-primary/40 transition-colors">
-            <CardContent className="p-6 space-y-4">
-              <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-xl gradient-fun flex items-center justify-center shrink-0">
-                  <Heart className="w-7 h-7 text-accent-foreground" />
+            <CardContent className="p-4 sm:p-6 space-y-4">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+                <div className="flex items-center gap-3 w-full sm:w-auto">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl gradient-fun flex items-center justify-center shrink-0">
+                    <Heart className="w-6 h-6 sm:w-7 sm:h-7 text-accent-foreground" />
+                  </div>
+                  <div className="flex-1 sm:flex-initial">
+                    <h3 className="font-display font-bold text-base sm:text-lg text-foreground">Work Love Language</h3>
+                    <p className="text-xs sm:text-sm text-muted-foreground">Discover how I collaborate best</p>
+                  </div>
                 </div>
-                <div className="flex-1">
-                  <h3 className="font-display font-bold text-lg text-foreground">Work Love Language</h3>
-                  <p className="text-sm text-muted-foreground">Discover how I collaborate best</p>
-                </div>
-                <Button variant="outline" size="sm" className="shrink-0" onClick={() => window.open("https://worklovelanguage.lovable.app", "_blank")}>
+                <Button variant="outline" size="sm" className="shrink-0 w-full sm:w-auto sm:ml-auto" onClick={() => window.open("https://worklovelanguage.lovable.app", "_blank")}>
                   Take the Quiz
                   <ExternalLink className="ml-1 w-3 h-3" />
                 </Button>
@@ -273,11 +275,11 @@ const ProfilePage = () => {
         <section className="space-y-4 animate-fade-in" style={{
         animationDelay: "0.2s"
       }}>
-          <h2 className="text-2xl font-display font-bold text-foreground text-center">
+          <h2 className="text-xl sm:text-2xl font-display font-bold text-foreground text-center">
             Unique Jeremy Things
           </h2>
-          <div className="flex flex-wrap justify-center gap-3">
-            {uniqueThings.map((thing, i) => <div key={i} className={cn("px-4 py-2 rounded-xl text-sm font-medium shadow-md transition-all hover:scale-105 cursor-default", thing.type === "professional" ? "bg-secondary text-secondary-foreground" : "bg-accent text-accent-foreground")} style={{
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
+            {uniqueThings.map((thing, i) => <div key={i} className={cn("px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl text-xs sm:text-sm font-medium shadow-md transition-all hover:scale-105 cursor-default", thing.type === "professional" ? "bg-secondary text-secondary-foreground" : "bg-accent text-accent-foreground")} style={{
             transform: `rotate(${thing.rotation}deg)`
           }}>
                 {thing.text}
@@ -289,7 +291,7 @@ const ProfilePage = () => {
         <section className="grid gap-4 animate-fade-in" style={{
         animationDelay: "0.3s"
       }}>
-          <h2 className="text-2xl font-display font-bold text-foreground text-center">
+          <h2 className="text-xl sm:text-2xl font-display font-bold text-foreground text-center">
             The Goods
           </h2>
           <div className="grid sm:grid-cols-2 gap-4">
@@ -330,8 +332,8 @@ const ProfilePage = () => {
           <Card className="border-2 border-dashed border-primary/30 bg-primary/5">
             <CardContent className="p-6 text-center space-y-4">
               <div className="flex items-center justify-center gap-2">
-                <Share2 className="w-5 h-5 text-primary" />
-                <h3 className="font-display font-bold text-lg text-foreground">Know someone who should hire me?</h3>
+                <Share2 className="w-5 h-5 text-primary shrink-0" />
+                <h3 className="font-display font-bold text-base sm:text-lg text-foreground">Know someone who should hire me?</h3>
               </div>
               <p className="text-sm text-muted-foreground">Sharing is caring (and gets me employed)</p>
               <div className="flex justify-center gap-3">
@@ -356,7 +358,7 @@ const ProfilePage = () => {
         <section className="space-y-4 animate-fade-in" style={{
         animationDelay: "0.4s"
       }}>
-          <h2 className="text-2xl font-display font-bold text-foreground text-center">
+          <h2 className="text-xl sm:text-2xl font-display font-bold text-foreground text-center">
             What People Say
           </h2>
           <Card className="relative overflow-hidden">
@@ -393,42 +395,42 @@ const ProfilePage = () => {
         animationDelay: "0.5s"
       }}>
           <Card className="border-success/30 bg-success/5">
-            <CardContent className="p-6 space-y-4">
-              <h3 className="font-display font-bold text-lg text-success flex items-center gap-2">
+            <CardContent className="p-4 sm:p-6 space-y-3 sm:space-y-4">
+              <h3 className="font-display font-bold text-base sm:text-lg text-success flex items-center gap-2">
                 ✓ Hire Me If
               </h3>
-              <ul className="space-y-3 text-sm">
-                <li className="flex items-start gap-3">
-                  <Shield className="w-5 h-5 text-success shrink-0 mt-0.5" />
+              <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm">
+                <li className="flex items-start gap-2 sm:gap-3">
+                  <Shield className="w-4 h-4 sm:w-5 sm:h-5 text-success shrink-0 mt-0.5" />
                   <span className="text-foreground">You want someone who chases their dreams without hurting others</span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <Telescope className="w-5 h-5 text-success shrink-0 mt-0.5" />
+                <li className="flex items-start gap-2 sm:gap-3">
+                  <Telescope className="w-4 h-4 sm:w-5 sm:h-5 text-success shrink-0 mt-0.5" />
                   <span className="text-foreground">You need someone who sees the future (wrote the first social media marketing book, like, evar)</span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <TrendingUp className="w-5 h-5 text-success shrink-0 mt-0.5" />
+                <li className="flex items-start gap-2 sm:gap-3">
+                  <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-success shrink-0 mt-0.5" />
                   <span className="text-foreground">You want someone who grows shiz (repeatedly, and to scale)</span>
                 </li>
               </ul>
             </CardContent>
           </Card>
           <Card className="border-destructive/30 bg-destructive/5">
-            <CardContent className="p-6 space-y-4">
-              <h3 className="font-display font-bold text-lg text-destructive flex items-center gap-2">
+            <CardContent className="p-4 sm:p-6 space-y-3 sm:space-y-4">
+              <h3 className="font-display font-bold text-base sm:text-lg text-destructive flex items-center gap-2">
                 ✗ Don't Hire Me If
               </h3>
-              <ul className="space-y-3 text-sm">
-                <li className="flex items-start gap-3">
-                  <Music className="w-5 h-5 text-destructive shrink-0 mt-0.5" />
+              <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm">
+                <li className="flex items-start gap-2 sm:gap-3">
+                  <Music className="w-4 h-4 sm:w-5 sm:h-5 text-destructive shrink-0 mt-0.5" />
                   <span className="text-foreground">You don't like joy (I'm a musician, deal with it)</span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <Banana className="w-5 h-5 text-destructive shrink-0 mt-0.5" />
+                <li className="flex items-start gap-2 sm:gap-3">
+                  <Banana className="w-4 h-4 sm:w-5 sm:h-5 text-destructive shrink-0 mt-0.5" />
                   <span className="text-foreground">Memes aren't real life (I'm the "banana for scale" guy on Imgur)</span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <Rocket className="w-5 h-5 text-destructive shrink-0 mt-0.5" />
+                <li className="flex items-start gap-2 sm:gap-3">
+                  <Rocket className="w-4 h-4 sm:w-5 sm:h-5 text-destructive shrink-0 mt-0.5" />
                   <span className="text-foreground">Geeks aren't sexy (sci-fi comedy writer — my mom says I'm funny!)</span>
                 </li>
               </ul>
@@ -440,7 +442,7 @@ const ProfilePage = () => {
         <section className="space-y-4 animate-fade-in" style={{
         animationDelay: "0.6s"
       }}>
-          <h2 className="text-2xl font-display font-bold text-foreground text-center">
+          <h2 className="text-xl sm:text-2xl font-display font-bold text-foreground text-center">
             Let's Chat
           </h2>
           <Card>
