@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Sparkles, ArrowRight, Info } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
+import { Sparkles, ArrowRight, Info, Scale } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import confetti from "canvas-confetti";
 import { useEasterEggs } from "@/contexts/EasterEggContext";
@@ -12,6 +13,7 @@ interface IntroPageProps {
 
 const IntroPage = ({ onNext }: IntroPageProps) => {
   const [sparkleClicks, setSparkleClicks] = useState(0);
+  const [termsOpen, setTermsOpen] = useState(false);
   const { toast } = useToast();
   const { discoverEgg } = useEasterEggs();
 
@@ -99,11 +101,40 @@ const IntroPage = ({ onNext }: IntroPageProps) => {
           No actual hiring managers were harmed in the making of this experience.
         </p>
         <button 
-          onClick={() => alert("By continuing, you agree to eventually hire me. This is legally binding. I checked. (I didn't check.)")}
+          onClick={() => setTermsOpen(true)}
           className="text-xs text-muted-foreground/50 hover:text-muted-foreground underline transition-colors"
         >
           Terms & Extremely Reasonable Conditions
         </button>
+
+        {/* Terms Modal */}
+        <Dialog open={termsOpen} onOpenChange={setTermsOpen}>
+          <DialogContent className="max-w-md">
+            <DialogHeader>
+              <div className="flex justify-center mb-2">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Scale className="w-6 h-6 text-primary" />
+                </div>
+              </div>
+              <DialogTitle className="text-center font-display">
+                Terms & Extremely Reasonable Conditions
+              </DialogTitle>
+              <DialogDescription className="text-center space-y-3 pt-2">
+                <p>
+                  By continuing, you agree to eventually hire me. This is legally binding.
+                </p>
+                <p className="text-xs text-muted-foreground/70 italic">
+                  I checked. (I didn't check.)
+                </p>
+              </DialogDescription>
+            </DialogHeader>
+            <DialogFooter className="sm:justify-center">
+              <Button onClick={() => setTermsOpen(false)} variant="outline">
+                I Accept My Fate
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
         <Footer />
       </div>
     </div>
