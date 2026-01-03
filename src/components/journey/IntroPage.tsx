@@ -109,7 +109,7 @@ const IntroPage = ({ onNext }: IntroPageProps) => {
 
         {/* Terms Modal */}
         <Dialog open={termsOpen} onOpenChange={setTermsOpen}>
-          <DialogContent className="max-w-md">
+          <DialogContent className="max-w-md max-h-[80vh] overflow-y-auto">
             <DialogHeader>
               <div className="flex justify-center mb-2">
                 <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
@@ -119,17 +119,35 @@ const IntroPage = ({ onNext }: IntroPageProps) => {
               <DialogTitle className="text-center font-display">
                 Terms & Extremely Reasonable Conditions
               </DialogTitle>
-              <DialogDescription className="text-center space-y-3 pt-2">
-                <p>
-                  By continuing, you agree to eventually hire me. This is legally binding.
-                </p>
-                <p className="text-xs text-muted-foreground/70 italic">
-                  I checked. (I didn't check.)
-                </p>
-              </DialogDescription>
             </DialogHeader>
+            <div className="space-y-3 text-sm text-muted-foreground">
+              <p className="font-medium text-foreground">By proceeding, you acknowledge and agree to the following:</p>
+              <ul className="space-y-2 list-disc pl-4">
+                <li>You will eventually hire me. This is legally binding. I checked. <span className="italic">(I didn't check.)</span></li>
+                <li>Any "we'll keep your resume on file" responses will be met with dramatic sighing.</li>
+                <li>You forfeit the right to ghost after a final interview. Minimum one rejection email required.</li>
+                <li>Coffee meetings are acceptable, but you're buying.</li>
+                <li>Any mention of "competitive salary" must be followed by actual numbers within 30 seconds.</li>
+                <li>"We're like a family here" triggers an automatic 15% salary increase request.</li>
+                <li>You agree that my jokes are funny. <span className="italic">Laughing is optional but encouraged.</span></li>
+              </ul>
+              <p className="text-xs text-muted-foreground/70 italic pt-2">
+                These terms were drafted by my legal team (me, at 2am, eating cereal).
+              </p>
+            </div>
             <DialogFooter className="sm:justify-center">
-              <Button onClick={() => setTermsOpen(false)} variant="outline">
+              <Button 
+                onClick={() => {
+                  confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: ['#ffd700', '#ff6b6b', '#4ecdc4', '#45b7d1'],
+                  });
+                  setTermsOpen(false);
+                }} 
+                variant="outline"
+              >
                 I Accept My Fate
               </Button>
             </DialogFooter>
