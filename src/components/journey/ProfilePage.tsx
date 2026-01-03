@@ -210,8 +210,8 @@ const ProfilePage = () => {
       variant: "destructive"
     });
   };
-  return <div className="min-h-screen gradient-bg">
-      <div className="max-w-2xl mx-auto p-6 space-y-12 py-12">
+  return <div className="min-h-screen gradient-bg overflow-x-hidden">
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 space-y-10 sm:space-y-12 py-8 sm:py-12">
         {/* Avatar Section */}
         <section className="text-center space-y-4 animate-fade-in">
           <div onClick={handleAvatarClick} className="relative w-40 h-40 mx-auto rounded-full overflow-hidden cursor-pointer hover:scale-105 transition-transform group shadow-xl">
@@ -326,25 +326,25 @@ const ProfilePage = () => {
             The Goods
           </h2>
           <div className="grid sm:grid-cols-2 gap-4">
-            <Card className="hover:shadow-lg transition-shadow cursor-pointer group" onClick={() => window.open("/Jeremy_Wright_Resume.pdf", "_blank")}>
-              <CardContent className="p-6 flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-coral/10 flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <FileText className="w-6 h-6 text-coral" />
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer group overflow-hidden" onClick={() => window.open("/Jeremy_Wright_Resume.pdf", "_blank")}>
+              <CardContent className="p-4 sm:p-6 flex items-center gap-3 sm:gap-4">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-coral/10 flex items-center justify-center group-hover:scale-110 transition-transform shrink-0">
+                  <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-coral" />
                 </div>
-                <div>
-                  <h3 className="font-semibold text-foreground">Resume</h3>
-                  <p className="text-sm text-muted-foreground">PDF • Click to view</p>
+                <div className="min-w-0">
+                  <h3 className="font-semibold text-foreground text-sm sm:text-base">Resume</h3>
+                  <p className="text-xs sm:text-sm text-muted-foreground">PDF • Click to view</p>
                 </div>
               </CardContent>
             </Card>
-            <Card className="hover:shadow-lg transition-shadow cursor-pointer group" onClick={() => window.open("/Jeremy_Wright_Portfolio.pdf", "_blank")}>
-              <CardContent className="p-6 flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-teal/10 flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <FileText className="w-6 h-6 text-teal" />
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer group overflow-hidden" onClick={() => window.open("/Jeremy_Wright_Portfolio.pdf", "_blank")}>
+              <CardContent className="p-4 sm:p-6 flex items-center gap-3 sm:gap-4">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-teal/10 flex items-center justify-center group-hover:scale-110 transition-transform shrink-0">
+                  <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-teal" />
                 </div>
-                <div>
-                  <h3 className="font-semibold text-foreground">Portfolio</h3>
-                  <p className="text-sm text-muted-foreground">PDF • Click to view</p>
+                <div className="min-w-0">
+                  <h3 className="font-semibold text-foreground text-sm sm:text-base">Portfolio</h3>
+                  <p className="text-xs sm:text-sm text-muted-foreground">PDF • Click to view</p>
                 </div>
               </CardContent>
             </Card>
@@ -360,11 +360,11 @@ const ProfilePage = () => {
         <section className="animate-fade-in" style={{
         animationDelay: "0.35s"
       }}>
-          <Card className="border-2 border-dashed border-primary/30 bg-primary/5">
-            <CardContent className="p-6 text-center space-y-4">
-              <div className="flex items-center justify-center gap-2">
+          <Card className="border-2 border-dashed border-primary/30 bg-primary/5 overflow-hidden">
+            <CardContent className="p-4 sm:p-6 text-center space-y-3 sm:space-y-4">
+              <div className="flex items-center justify-center gap-2 flex-wrap">
                 <Share2 className="w-5 h-5 text-primary shrink-0" />
-                <h3 className="font-display font-bold text-base sm:text-lg text-foreground">Know someone who should hire me?</h3>
+                <h3 className="font-display font-bold text-sm sm:text-lg text-foreground">Know someone who should hire me?</h3>
               </div>
               <p className="text-sm text-muted-foreground">Sharing is caring (and gets me hired)</p>
               <div className="flex justify-center gap-3">
@@ -393,15 +393,15 @@ const ProfilePage = () => {
             What People Say
           </h2>
           <Card className="relative overflow-hidden">
-            <CardContent className="p-6 text-center space-y-4">
-              <p className="text-lg italic text-foreground">
+            <CardContent className="p-4 sm:p-6 text-center space-y-3 sm:space-y-4">
+              <p className="text-base sm:text-lg italic text-foreground">
                 "{testimonials[testimonialIndex].quote}"
               </p>
               <div>
-                <p className="font-semibold text-foreground">
+                <p className="font-semibold text-foreground text-sm sm:text-base">
                   {testimonials[testimonialIndex].author}
                 </p>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-xs sm:text-sm text-muted-foreground">
                   {testimonials[testimonialIndex].role}
                 </p>
               </div>
@@ -517,15 +517,17 @@ const ProfilePage = () => {
                   <p className="text-center text-xs text-muted-foreground">
                     (That's what people call me in places that can't pronounce R's, okay?)
                   </p>
-                  <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground pt-2 flex-wrap">
-                    <span>To get in touch directly, my super secret email is</span>
-                    <a href="mailto:wearecleardigital@gmail.com" className="inline-flex items-center gap-1 hover:text-foreground transition-colors">
-                      <span className="underline">wearecleardigital@gmail.com</span>
-                      <ExternalLink className="w-3 h-3" />
-                    </a>
-                    <button onClick={handleCopyEmail} className="inline-flex items-center justify-center w-6 h-6 rounded-md hover:bg-muted transition-colors" title="Copy email">
-                      {emailCopied ? <Check className="w-3.5 h-3.5 text-green-500" /> : <Copy className="w-3.5 h-3.5" />}
-                    </button>
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-xs sm:text-sm text-muted-foreground pt-2">
+                    <span className="text-center">To get in touch directly, my super secret email is</span>
+                    <div className="flex items-center gap-1">
+                      <a href="mailto:wearecleardigital@gmail.com" className="inline-flex items-center gap-1 hover:text-foreground transition-colors">
+                        <span className="underline break-all">wearecleardigital@gmail.com</span>
+                        <ExternalLink className="w-3 h-3 shrink-0" />
+                      </a>
+                      <button onClick={handleCopyEmail} className="inline-flex items-center justify-center w-6 h-6 rounded-md hover:bg-muted transition-colors shrink-0" title="Copy email">
+                        {emailCopied ? <Check className="w-3.5 h-3.5 text-green-500" /> : <Copy className="w-3.5 h-3.5" />}
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
