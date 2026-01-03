@@ -13,6 +13,7 @@ import confetti from "canvas-confetti";
 import ThemeToggle from "@/components/ThemeToggle";
 import FAQSection from "./FAQSection";
 import { useEasterEggs } from "@/contexts/EasterEggContext";
+import { usePdfTracker } from "@/hooks/usePdfTracker";
 import Footer from "@/components/Footer";
 import wllArchitect from "@/assets/WLL_architect.png";
 import avatarEmoji from "@/assets/avatar-emoji.png";
@@ -103,6 +104,7 @@ const ProfilePage = () => {
   const [readingTimeClicks, setReadingTimeClicks] = useState(0);
   const { toast } = useToast();
   const { discoverEgg } = useEasterEggs();
+  const { trackDownload } = usePdfTracker();
   useEffect(() => {
     const handleScroll = () => {
       setShowBackToTop(window.scrollY > 400);
@@ -433,7 +435,7 @@ const ProfilePage = () => {
             The Goods
           </h2>
           <div className="grid sm:grid-cols-2 gap-4">
-            <Card className="hover:shadow-lg hover-lift cursor-pointer group overflow-hidden" onClick={() => window.open("/Jeremy_Wright_Resume.pdf", "_blank")}>
+            <Card className="hover:shadow-lg hover-lift cursor-pointer group overflow-hidden" onClick={() => { trackDownload("resume"); window.open("/Jeremy_Wright_Resume.pdf", "_blank"); }}>
               <CardContent className="p-4 sm:p-6 flex items-center gap-3 sm:gap-4">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-coral/10 flex items-center justify-center group-hover:scale-110 transition-transform shrink-0">
                   <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-coral" />
@@ -444,7 +446,7 @@ const ProfilePage = () => {
                 </div>
               </CardContent>
             </Card>
-            <Card className="hover:shadow-lg hover-lift cursor-pointer group overflow-hidden" onClick={() => window.open("/Jeremy_Wright_Portfolio.pdf", "_blank")}>
+            <Card className="hover:shadow-lg hover-lift cursor-pointer group overflow-hidden" onClick={() => { trackDownload("portfolio"); window.open("/Jeremy_Wright_Portfolio.pdf", "_blank"); }}>
               <CardContent className="p-4 sm:p-6 flex items-center gap-3 sm:gap-4">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-teal/10 flex items-center justify-center group-hover:scale-110 transition-transform shrink-0">
                   <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-teal" />
