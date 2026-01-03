@@ -4,6 +4,10 @@ import { Code2, Linkedin, FileText, Briefcase, User } from "lucide-react";
 const Footer = () => {
   return (
     <footer className="py-6 mt-8 border-t border-border/30 print:hidden">
+      <div className="text-center text-sm text-muted-foreground mb-4">
+        <span className="font-medium text-foreground">What I do:</span>{" "}
+        Marketing • Strategy • Startups & Agencies • Growth • Team Building • Leadership • GTM • Product Marketing
+      </div>
       <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-sm text-muted-foreground flex-wrap">
         <Link 
           to="/realness" 
