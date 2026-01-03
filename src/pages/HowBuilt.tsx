@@ -182,7 +182,7 @@ const HowBuilt = () => {
         {/* Footer note */}
         <div className="text-center space-y-2 pt-4 border-t border-border/50">
           <p className="text-sm text-muted-foreground">
-            Built with ❤️ and a lot of AI assistance
+            Built with ❤️ and a healthy dose of self awareness
           </p>
           <p className="text-xs text-muted-foreground/60">
             Total development time: Way less than you would think
