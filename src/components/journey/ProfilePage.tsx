@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { supabase } from "@/integrations/supabase/client";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { Linkedin, FileText, Mail, ExternalLink, ChevronLeft, ChevronRight, ChevronDown, Heart, Send, User, X, Share2, Twitter, Facebook, Link, Shield, Telescope, TrendingUp, Music, Banana, Rocket } from "lucide-react";
+import { Linkedin, FileText, Mail, ExternalLink, ChevronLeft, ChevronRight, ChevronDown, Heart, Send, User, X, Share2, Twitter, Facebook, Link, Shield, Telescope, TrendingUp, Music, Banana, Rocket, Copy, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import confetti from "canvas-confetti";
@@ -93,9 +93,20 @@ const ProfilePage = () => {
     message: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [emailCopied, setEmailCopied] = useState(false);
   const {
     toast
   } = useToast();
+  
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText("wearecleardigital@gmail.com");
+    setEmailCopied(true);
+    toast({
+      title: "Email copied!",
+      description: "Now go paste it somewhere useful!"
+    });
+    setTimeout(() => setEmailCopied(false), 2000);
+  };
   const shareUrl = typeof window !== 'undefined' ? `${window.location.origin}/realness` : '/realness';
   const shareText = "Check out Jeremy Wright's interactive portfolio - it's unlike any resume you've seen!";
   const handleShare = (platform: string) => {
@@ -507,10 +518,24 @@ const ProfilePage = () => {
                   <p className="text-center text-xs text-muted-foreground">
                     (That's what people call me in places that can't pronounce R's, okay?)
                   </p>
-                  <a href="mailto:wearecleardigital@gmail.com" className="flex items-center justify-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors pt-2">
-                    To get in touch directly, my super secret email is <span className="underline">wearecleardigital@gmail.com</span>
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
+                  <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground pt-2 flex-wrap">
+                    <span>To get in touch directly, my super secret email is</span>
+                    <a href="mailto:wearecleardigital@gmail.com" className="inline-flex items-center gap-1 hover:text-foreground transition-colors">
+                      <span className="underline">wearecleardigital@gmail.com</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                    <button
+                      onClick={handleCopyEmail}
+                      className="inline-flex items-center justify-center w-6 h-6 rounded-md hover:bg-muted transition-colors"
+                      title="Copy email"
+                    >
+                      {emailCopied ? (
+                        <Check className="w-3.5 h-3.5 text-green-500" />
+                      ) : (
+                        <Copy className="w-3.5 h-3.5" />
+                      )}
+                    </button>
+                  </div>
                 </div>
               </div>
             </CardContent>
