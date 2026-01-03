@@ -176,7 +176,7 @@ const ProfilePage = () => {
             )}
             <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors flex items-center justify-center">
               <span className="text-xs text-primary-foreground opacity-0 group-hover:opacity-100 transition-opacity font-medium drop-shadow-lg">
-                Click me!
+                Click for more realness!
               </span>
             </div>
           </div>
