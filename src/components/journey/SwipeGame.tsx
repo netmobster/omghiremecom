@@ -114,7 +114,7 @@ const SwipeGame = ({ onNext }: SwipeGameProps) => {
   if (isComplete) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center p-6 gradient-bg">
-        <div className="max-w-md w-full text-center space-y-6 animate-bounce-in">
+        <div className="max-w-md md:max-w-xl w-full text-center space-y-6 animate-bounce-in">
           <div className="text-6xl">🎉</div>
           <h2 className="text-3xl font-display font-bold text-foreground">
             Look at That!
@@ -148,7 +148,7 @@ const SwipeGame = ({ onNext }: SwipeGameProps) => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6 gradient-bg">
-      <div className="max-w-md w-full space-y-6">
+      <div className="max-w-md md:max-w-xl w-full space-y-6">
         {/* Progress indicator */}
         <div className="flex justify-center gap-2">
           {traits.map((_, i) => (

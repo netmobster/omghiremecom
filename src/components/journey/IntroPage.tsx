@@ -41,7 +41,7 @@ const IntroPage = ({ onNext }: IntroPageProps) => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6 gradient-bg">
-      <div className="max-w-xl w-full text-center space-y-8 animate-fade-in">
+      <div className="max-w-md md:max-w-xl w-full text-center space-y-8 animate-fade-in">
         {/* Playful sparkle decoration - clickable easter egg */}
         <div className="flex justify-center gap-2 text-primary cursor-pointer" onClick={handleSparkleClick}>
           <Sparkles className="w-6 h-6 animate-pulse hover:scale-125 transition-transform" />
