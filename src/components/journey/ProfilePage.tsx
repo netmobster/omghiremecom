@@ -4,6 +4,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import {
   Linkedin,
   FileText,
   Mail,
@@ -13,6 +19,7 @@ import {
   Heart,
   Send,
   User,
+  X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
@@ -23,10 +30,30 @@ import avatarMcdonalds from "@/assets/avatar-mcdonalds.jpg";
 import avatarJumping from "@/assets/avatar-jumping.jpg";
 
 const avatarStages = [
-  { label: "Professional Jay", description: "The LinkedIn version", type: "illustrated", image: avatarEmoji },
-  { label: "Real Jay", description: "The headshot", type: "linkedin", image: avatarLinkedin },
-  { label: "Realer Jay", description: "McDonald's vibes", type: "mcdonalds", image: avatarMcdonalds },
-  { label: "Realest Jay", description: "Full send", type: "jumping", image: avatarJumping },
+  { 
+    label: "Professional Jay", 
+    description: "The LinkedIn version", 
+    image: avatarEmoji,
+    caption: "Oh, you want to see the real me? Click on through for professional, personal, and \"okay, yeah, he's a little odd\" (as if you're surprised at this point!)"
+  },
+  { 
+    label: "Real Jay", 
+    description: "The headshot", 
+    image: avatarLinkedin,
+    caption: "Gawd I hate headshots..."
+  },
+  { 
+    label: "Realer Jay", 
+    description: "McDonald's vibes", 
+    image: avatarMcdonalds,
+    caption: "Actual moi, though I do like to rawk hoodies with blazers"
+  },
+  { 
+    label: "Realest Jay", 
+    description: "Full send", 
+    image: avatarJumping,
+    caption: "Yeah, see, odd. Friend (to the right), his wedding photog said to \"manly jump\" and this was all of our reaction, without coordinating..."
+  },
 ];
 
 const uniqueThings = [
@@ -60,13 +87,14 @@ const testimonials = [
 
 const ProfilePage = () => {
   const [avatarIndex, setAvatarIndex] = useState(0);
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [testimonialIndex, setTestimonialIndex] = useState(0);
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
   const handleAvatarClick = () => {
-    setAvatarIndex((prev) => (prev + 1) % avatarStages.length);
+    setIsGalleryOpen(true);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -118,6 +146,32 @@ const ProfilePage = () => {
             </p>
           </div>
         </section>
+
+        {/* Avatar Gallery Modal */}
+        <Dialog open={isGalleryOpen} onOpenChange={setIsGalleryOpen}>
+          <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle className="font-display text-xl">The Many Faces of Jay</DialogTitle>
+            </DialogHeader>
+            <div className="space-y-8 py-4">
+              {avatarStages.map((stage, index) => (
+                <div key={index} className="space-y-3">
+                  <div className="relative aspect-square max-w-sm mx-auto rounded-xl overflow-hidden shadow-lg">
+                    <img 
+                      src={stage.image} 
+                      alt={stage.label}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="text-center space-y-1 px-4">
+                    <h3 className="font-display font-bold text-foreground">{stage.label}</h3>
+                    <p className="text-sm text-muted-foreground italic">{stage.caption}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </DialogContent>
+        </Dialog>
 
         {/* Work Love Language */}
         <section className="animate-fade-in" style={{ animationDelay: "0.1s" }}>
