@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -23,6 +24,7 @@ import {
 } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
 import Footer from "@/components/Footer";
+import { cn } from "@/lib/utils";
 
 const features = [
   {
@@ -98,6 +100,17 @@ const features = [
 ];
 
 const HowBuilt = () => {
+  const [visibleFeatures, setVisibleFeatures] = useState<number[]>([]);
+
+  useEffect(() => {
+    // Staggered reveal animation
+    features.forEach((_, index) => {
+      setTimeout(() => {
+        setVisibleFeatures(prev => [...prev, index]);
+      }, 100 + index * 80);
+    });
+  }, []);
+
   return (
     <div className="min-h-screen gradient-bg">
       <ThemeToggle />
@@ -111,7 +124,7 @@ const HowBuilt = () => {
             </Button>
           </Link>
           
-          <div className="text-center space-y-4">
+          <div className="text-center space-y-4 animate-fade-in">
             <div className="flex justify-center">
               <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center">
                 <Code2 className="w-8 h-8 text-primary" />
@@ -128,7 +141,7 @@ const HowBuilt = () => {
         </div>
 
         {/* Lovable CTA */}
-        <Card className="border-2 border-primary/30 bg-primary/5">
+        <Card className="border-2 border-primary/30 bg-primary/5 animate-fade-in" style={{ animationDelay: "0.1s" }}>
           <CardContent className="p-6 flex flex-col sm:flex-row items-center gap-4">
             <div className="w-14 h-14 rounded-xl bg-primary/20 flex items-center justify-center shrink-0">
               <Rocket className="w-7 h-7 text-primary" />
@@ -153,14 +166,26 @@ const HowBuilt = () => {
 
         {/* Features Grid */}
         <div className="space-y-4">
-          <h2 className="text-xl font-display font-bold text-foreground text-center">
+          <h2 className="text-xl font-display font-bold text-foreground text-center animate-fade-in" style={{ animationDelay: "0.2s" }}>
             Features & Tech Stack
           </h2>
           <div className="grid gap-3">
             {features.map((feature, index) => (
-              <Card key={index} className="transition-all hover:border-primary/30">
+              <Card 
+                key={index} 
+                className={cn(
+                  "transition-all duration-500 hover:border-primary/30",
+                  visibleFeatures.includes(index) 
+                    ? "opacity-100 translate-y-0" 
+                    : "opacity-0 translate-y-4"
+                )}
+              >
                 <CardContent className="p-4 flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                  <div className={cn(
+                    "w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 transition-transform duration-300",
+                    visibleFeatures.includes(index) && "scale-100",
+                    !visibleFeatures.includes(index) && "scale-75"
+                  )}>
                     <feature.icon className="w-5 h-5 text-primary" />
                   </div>
                   <div className="space-y-1">

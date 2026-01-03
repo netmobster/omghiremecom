@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Code2 } from "lucide-react";
+import { Code2, Globe, Linkedin } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -14,12 +14,23 @@ const Footer = () => {
         </Link>
         <span className="hidden sm:inline text-muted-foreground/30">•</span>
         <a 
-          href="https://lovable.dev" 
+          href="https://strategerish.wordpress.com" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="hover:text-foreground transition-colors"
+          className="flex items-center gap-1.5 hover:text-foreground transition-colors"
         >
-          Made with Lovable
+          <Globe className="w-4 h-4" />
+          strategerish
+        </a>
+        <span className="hidden sm:inline text-muted-foreground/30">•</span>
+        <a 
+          href="https://linkedin.com/in/jeremywright" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="flex items-center gap-1.5 hover:text-foreground transition-colors"
+        >
+          <Linkedin className="w-4 h-4" />
+          LinkedIn
         </a>
       </div>
     </footer>
