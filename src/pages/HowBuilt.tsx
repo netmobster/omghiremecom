@@ -140,29 +140,6 @@ const HowBuilt = () => {
           </div>
         </div>
 
-        {/* Lovable CTA */}
-        <Card className="border-2 border-primary/30 bg-primary/5 animate-fade-in" style={{ animationDelay: "0.1s" }}>
-          <CardContent className="p-6 flex flex-col sm:flex-row items-center gap-4">
-            <div className="w-14 h-14 rounded-xl bg-primary/20 flex items-center justify-center shrink-0">
-              <Rocket className="w-7 h-7 text-primary" />
-            </div>
-            <div className="flex-1 text-center sm:text-left">
-              <h2 className="font-display font-bold text-lg text-foreground">
-                Want to build something like this?
-              </h2>
-              <p className="text-muted-foreground text-sm">
-                No coding required. Just describe what you want and watch it come to life.
-              </p>
-            </div>
-            <Button 
-              onClick={() => window.open("https://lovable.dev", "_blank")}
-              className="shrink-0 gap-2"
-            >
-              Try Lovable
-              <ExternalLink className="w-4 h-4" />
-            </Button>
-          </CardContent>
-        </Card>
 
         {/* Features Grid */}
         <div className="space-y-4">
