@@ -173,7 +173,10 @@ const ProfilePage = () => {
                 </div>
               </CardContent>
             </Card>
-            <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
+            <Card 
+              className="hover:shadow-lg transition-shadow cursor-pointer group"
+              onClick={() => window.open("/Jeremy_Wright_Portfolio.pdf", "_blank")}
+            >
               <CardContent className="p-6 flex items-center gap-4">
                 <div className="w-12 h-12 rounded-xl bg-teal/10 flex items-center justify-center group-hover:scale-110 transition-transform">
                   <FileText className="w-6 h-6 text-teal" />
@@ -188,7 +191,7 @@ const ProfilePage = () => {
           <Button
             variant="outline"
             className="w-full"
-            onClick={() => window.open("https://linkedin.com", "_blank")}
+            onClick={() => window.open("https://linkedin.com/in/jeremywright", "_blank")}
           >
             <Linkedin className="mr-2 w-4 h-4" />
             View LinkedIn Profile
