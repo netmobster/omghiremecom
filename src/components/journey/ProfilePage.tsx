@@ -451,7 +451,7 @@ const ProfilePage = () => {
                 </li>
                 <li className="flex items-start gap-2 sm:gap-3">
                   <Telescope className="w-4 h-4 sm:w-5 sm:h-5 text-success shrink-0 mt-0.5" />
-                  <span className="text-foreground">You need someone who sees the future (wrote the first social media marketing book, like, evar)</span>
+                  <span className="text-foreground">You need someone who sees the future (wrote the first global social media marketing book, like, evar)</span>
                 </li>
                 <li className="flex items-start gap-2 sm:gap-3">
                   <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-success shrink-0 mt-0.5" />
