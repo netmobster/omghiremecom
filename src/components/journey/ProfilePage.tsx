@@ -9,6 +9,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { Linkedin, FileText, Mail, ExternalLink, ChevronLeft, ChevronRight, ChevronDown, Heart, Send, User, X, Share2, Twitter, Facebook, Link, Shield, Telescope, TrendingUp, Music, Banana, Rocket } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
+import confetti from "canvas-confetti";
 import wllArchitect from "@/assets/WLL_architect.png";
 import avatarEmoji from "@/assets/avatar-emoji.png";
 import avatarLinkedin from "@/assets/avatar-linkedin.jpg";
@@ -152,6 +153,14 @@ const ProfilePage = () => {
         }
       });
       if (error) throw error;
+      
+      // Celebrate with confetti!
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
+      
       toast({
         title: "Email sent! You lucky ducky!",
         description: "I'll get back to you faster than you can say 'full-stack marketer'."
