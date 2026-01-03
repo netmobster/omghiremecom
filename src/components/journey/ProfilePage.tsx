@@ -506,6 +506,13 @@ const ProfilePage = () => {
                   <p className="text-center text-xs text-muted-foreground">
                     (That's what people call me in places that can't pronounce R's, okay?)
                   </p>
+                  <a 
+                    href="mailto:wearecleardigital@gmail.com" 
+                    className="flex items-center justify-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors pt-2"
+                  >
+                    To get in touch directly, my super secret email is <span className="underline">wearecleardigital@gmail.com</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
                 </div>
               </div>
             </CardContent>
