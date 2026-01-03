@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { supabase } from "@/integrations/supabase/client";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { Linkedin, FileText, Mail, ExternalLink, ChevronLeft, ChevronRight, ChevronDown, ChevronUp, Heart, Send, User, X, Share2, Twitter, Facebook, Link, Shield, Telescope, TrendingUp, Music, Banana, Rocket, Copy, Check } from "lucide-react";
+import { Linkedin, FileText, Mail, ExternalLink, ChevronLeft, ChevronRight, ChevronDown, ChevronUp, Heart, Send, User, X, Share2, Twitter, Facebook, Link, Shield, Telescope, TrendingUp, Music, Banana, Rocket, Copy, Check, Cog, Compass } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import confetti from "canvas-confetti";
@@ -456,6 +456,10 @@ const ProfilePage = () => {
                   <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-success shrink-0 mt-0.5" />
                   <span className="text-foreground">You want someone who grows shiz (repeatedly, and to scale)</span>
                 </li>
+                <li className="flex items-start gap-2 sm:gap-3">
+                  <Cog className="w-4 h-4 sm:w-5 sm:h-5 text-success shrink-0 mt-0.5" />
+                  <span className="text-foreground">You want to make sure your $100k HubSpot (or other) implementation actually works before you hire a team to run it</span>
+                </li>
               </ul>
             </CardContent>
           </Card>
@@ -476,6 +480,10 @@ const ProfilePage = () => {
                 <li className="flex items-start gap-2 sm:gap-3">
                   <Rocket className="w-4 h-4 sm:w-5 sm:h-5 text-destructive shrink-0 mt-0.5" />
                   <span className="text-foreground">Geeks aren't sexy (sci-fi comedy writer — my mom says I'm funny!)</span>
+                </li>
+                <li className="flex items-start gap-2 sm:gap-3">
+                  <Compass className="w-4 h-4 sm:w-5 sm:h-5 text-destructive shrink-0 mt-0.5" />
+                  <span className="text-foreground">You want a "Marketing Manager" to execute a pre-defined checklist; hire me if you need an Architect to build the checklist</span>
                 </li>
               </ul>
             </CardContent>
