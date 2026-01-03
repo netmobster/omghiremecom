@@ -44,7 +44,7 @@ const Footer = () => {
           <Code2 className="w-4 h-4" />
           How this was built
         </Link>
-        <span className="hidden sm:inline text-muted-foreground/30">•</span>
+        <div className="w-full hidden sm:block" />
         <a 
           href="/Jeremy_Wright_Resume.pdf" 
           target="_blank" 
