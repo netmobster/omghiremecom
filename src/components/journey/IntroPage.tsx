@@ -1,11 +1,15 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sparkles, ArrowRight, Info } from "lucide-react";
+import TypewriterText from "./TypewriterText";
 
 interface IntroPageProps {
   onNext: () => void;
 }
 
 const IntroPage = ({ onNext }: IntroPageProps) => {
+  const [typewriterDone, setTypewriterDone] = useState(false);
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6 gradient-bg">
       <div className="max-w-md w-full text-center space-y-8 animate-fade-in">
@@ -16,9 +20,13 @@ const IntroPage = ({ onNext }: IntroPageProps) => {
           <Sparkles className="w-6 h-6 animate-pulse delay-200" />
         </div>
 
-        {/* Main headline */}
-        <h1 className="text-4xl md:text-5xl font-display font-bold text-gradient-primary leading-tight">
-          Oh, You Want to Hire Me?
+        {/* Main headline with typewriter effect */}
+        <h1 className="text-4xl md:text-5xl font-display font-bold text-gradient-primary leading-tight min-h-[2.5em]">
+          <TypewriterText 
+            text="Oh, You Want to Hire Me?" 
+            delay={60}
+            onComplete={() => setTypewriterDone(true)}
+          />
         </h1>
 
         {/* Subheadline */}
@@ -67,6 +75,12 @@ const IntroPage = ({ onNext }: IntroPageProps) => {
         <p className="text-xs text-muted-foreground">
           No actual hiring managers were harmed in the making of this experience.
         </p>
+        <button 
+          onClick={() => alert("By continuing, you agree to eventually hire me. This is legally binding. I checked. (I didn't check.)")}
+          className="text-xs text-muted-foreground/50 hover:text-muted-foreground underline transition-colors"
+        >
+          Terms & Extremely Reasonable Conditions
+        </button>
       </div>
     </div>
   );

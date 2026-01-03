@@ -47,6 +47,12 @@ const funnyErrors = [
   "That's... not how this works 😅",
   "Bold choice. Wrong, but bold. ❌",
   "I'm going to pretend I didn't see that 🙈",
+  "HR would like a word with you... 📋",
+  "That's going in your permanent record! 📝",
+  "My therapist warned me about people like you 🛋️",
+  "Did you mean to swipe right? Please say yes 🥺",
+  "I'm not mad, just disappointed 😔",
+  "This will be remembered during negotiations 💼",
 ];
 
 const SwipeGame = ({ onNext }: SwipeGameProps) => {
