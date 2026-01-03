@@ -7,12 +7,8 @@ interface PortfolioTeaseProps {
 }
 
 const absurdLoadingMessages = [
-  "Initializing video codec... just kidding, I don't know what that means...",
-  "Consulting the hiring gods...",
-  "Checking if your webcam is judging you...",
   "Calculating how awkward this video would be...",
   "Estimating time to regret this decision...",
-  "Buffering your enthusiasm...",
 ];
 
 const PortfolioTease = ({ onNext }: PortfolioTeaseProps) => {
