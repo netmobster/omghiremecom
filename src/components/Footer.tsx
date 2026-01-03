@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className="py-6 mt-8 border-t border-border/30 print:hidden">
       <div className="text-center text-sm text-muted-foreground mb-4">
         <span className="font-medium text-foreground">What I do:</span>{" "}
-        Marketing • Strategy • Startups & Agencies • Growth • Team Building • Leadership • GTM • Product Marketing • Data & Insights
+        Marketing • Strategy • Startups & Agencies • Growth • Team Building • Leadership • GTM • Product Marketing • Data & Insights • AI & Automation
       </div>
       <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-sm text-muted-foreground flex-wrap">
         <Link 
