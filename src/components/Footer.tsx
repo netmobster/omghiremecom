@@ -15,7 +15,7 @@ const Footer = () => {
           className="flex items-center gap-1.5 hover:text-foreground transition-colors"
         >
           <UserCircle className="w-4 h-4" />
-          About
+          About Jeremy
         </Link>
         <span className="hidden sm:inline text-muted-foreground/30">•</span>
         <Link 
