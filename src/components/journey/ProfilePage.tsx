@@ -159,7 +159,10 @@ const ProfilePage = () => {
             The Goods
           </h2>
           <div className="grid sm:grid-cols-2 gap-4">
-            <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
+            <Card 
+              className="hover:shadow-lg transition-shadow cursor-pointer group"
+              onClick={() => window.open("/Jeremy_Wright_Resume.pdf", "_blank")}
+            >
               <CardContent className="p-6 flex items-center gap-4">
                 <div className="w-12 h-12 rounded-xl bg-coral/10 flex items-center justify-center group-hover:scale-110 transition-transform">
                   <FileText className="w-6 h-6 text-coral" />
