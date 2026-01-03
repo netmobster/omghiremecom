@@ -477,6 +477,28 @@ const Secrets = () => {
           </div>
         )}
         <Footer />
+        
+        {/* Super secret unlock all */}
+        <div className="text-center pt-8">
+          <span 
+            onClick={() => {
+              EASTER_EGGS.forEach(egg => discoverEgg(egg.id));
+              confetti({
+                particleCount: 200,
+                spread: 100,
+                origin: { y: 0.6 },
+                colors: ['#ffd700', '#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4'],
+              });
+              toast({
+                title: "🎉 ALL ACHIEVEMENTS UNLOCKED!",
+                description: "You found the secret secret. You absolute legend.",
+              });
+            }}
+            className="text-muted-foreground/20 hover:text-muted-foreground/40 cursor-default select-none transition-colors"
+          >
+            .
+          </span>
+        </div>
       </div>
     </div>
   );
