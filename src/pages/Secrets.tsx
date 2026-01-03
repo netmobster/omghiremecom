@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ArrowLeft, Lock, Egg, Trophy, ChevronDown, Send, Gift } from "lucide-react";
+import { ArrowLeft, Lock, Egg, Trophy, ChevronDown, Send, Gift, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import ThemeToggle from "@/components/ThemeToggle";
@@ -19,6 +19,7 @@ const Secrets = () => {
   const { hasFound, totalFound, totalEggs, resetAll } = useEasterEggs();
   const [celebratedCompletion, setCelebratedCompletion] = useState(false);
   const [prizeOpen, setPrizeOpen] = useState(false);
+  const [cheatSheetOpen, setCheatSheetOpen] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
@@ -274,6 +275,76 @@ const Secrets = () => {
             );
           })}
         </div>
+
+        {/* Gotta Catch 'Em All Cheat Sheet */}
+        <Collapsible open={cheatSheetOpen} onOpenChange={setCheatSheetOpen}>
+          <CollapsibleTrigger asChild>
+            <Button 
+              variant="outline" 
+              className="w-full gap-2"
+            >
+              <Sparkles className="w-4 h-4" />
+              Gotta Catch 'Em All
+              <ChevronDown className={cn(
+                "w-4 h-4 transition-transform ml-auto",
+                cheatSheetOpen && "rotate-180"
+              )} />
+            </Button>
+          </CollapsibleTrigger>
+          <CollapsibleContent className="pt-4">
+            <Card className="bg-card/50 border-border/50">
+              <CardContent className="p-4 space-y-3">
+                <p className="text-xs text-muted-foreground italic text-center mb-3">
+                  Okay fine, here's how to find them all...
+                </p>
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-start gap-2">
+                    <span className="text-lg">🎮</span>
+                    <div>
+                      <span className="font-medium text-foreground">Konami Code Master:</span>
+                      <span className="text-muted-foreground"> Type ↑↑↓↓←→←→BA anywhere on the site</span>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-lg">💼</span>
+                    <div>
+                      <span className="font-medium text-foreground">Subliminal Messaging:</span>
+                      <span className="text-muted-foreground"> Type the word "hire" anywhere</span>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-lg">✨</span>
+                    <div>
+                      <span className="font-medium text-foreground">Sparkle Master:</span>
+                      <span className="text-muted-foreground"> Click the sparkles on the intro page 7 times</span>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-lg">⏰</span>
+                    <div>
+                      <span className="font-medium text-foreground">Time Lord:</span>
+                      <span className="text-muted-foreground"> Click the reading time estimate 5 times</span>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-lg">🎓</span>
+                    <div>
+                      <span className="font-medium text-foreground">Thorough Researcher:</span>
+                      <span className="text-muted-foreground"> Open every FAQ question on the profile page</span>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-lg">💕</span>
+                    <div>
+                      <span className="font-medium text-foreground">Persistent Romantic:</span>
+                      <span className="text-muted-foreground"> Keep clicking "Are you single?" in the FAQ</span>
+                    </div>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+          </CollapsibleContent>
+        </Collapsible>
 
         {/* Footer hint */}
         <p className="text-center text-sm text-muted-foreground italic">
