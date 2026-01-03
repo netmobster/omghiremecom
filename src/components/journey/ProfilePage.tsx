@@ -18,10 +18,11 @@ import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import wllArchitect from "@/assets/WLL_architect.png";
 import avatarEmoji from "@/assets/avatar-emoji.png";
+import avatarLinkedin from "@/assets/avatar-linkedin.jpg";
 
 const avatarStages = [
   { label: "Professional Jay", description: "The LinkedIn version", type: "illustrated", image: avatarEmoji },
-  { label: "Real Jay", description: "The headshot", type: "linkedin", image: null },
+  { label: "Real Jay", description: "The headshot", type: "linkedin", image: avatarLinkedin },
   { label: "Realer Jay", description: "McDonald's vibes", type: "mcdonalds", image: null },
   { label: "Realest Jay", description: "Full send", type: "jumping", image: null },
 ];
