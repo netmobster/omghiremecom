@@ -13,6 +13,7 @@ import confetti from "canvas-confetti";
 import ThemeToggle from "@/components/ThemeToggle";
 import FAQSection from "./FAQSection";
 import { useEasterEggs } from "@/contexts/EasterEggContext";
+import Footer from "@/components/Footer";
 import wllArchitect from "@/assets/WLL_architect.png";
 import avatarEmoji from "@/assets/avatar-emoji.png";
 import avatarLinkedin from "@/assets/avatar-linkedin.jpg";
@@ -679,6 +680,7 @@ const ProfilePage = () => {
             {" "}(for your fridge, obviously)
           </p>
         </footer>
+        <Footer />
       </div>
 
       {/* Back to Top Button */}

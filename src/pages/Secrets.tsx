@@ -9,6 +9,7 @@ import { ArrowLeft, Lock, Egg, Trophy, ChevronDown, Send, Gift } from "lucide-re
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import ThemeToggle from "@/components/ThemeToggle";
+import Footer from "@/components/Footer";
 import confetti from "canvas-confetti";
 import { useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
@@ -303,6 +304,7 @@ const Secrets = () => {
             </Button>
           </div>
         )}
+        <Footer />
       </div>
     </div>
   );
