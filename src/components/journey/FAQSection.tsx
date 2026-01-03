@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -5,6 +6,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Card, CardContent } from "@/components/ui/card";
+import { useToast } from "@/hooks/use-toast";
+import confetti from "canvas-confetti";
 
 const faqs = [
   {
@@ -34,6 +37,33 @@ const faqs = [
 ];
 
 const FAQSection = () => {
+  const [openedFaqs, setOpenedFaqs] = useState<Set<string>>(new Set());
+  const [allOpenedTriggered, setAllOpenedTriggered] = useState(false);
+  const { toast } = useToast();
+
+  const handleValueChange = (value: string) => {
+    if (value && !openedFaqs.has(value)) {
+      const newOpened = new Set(openedFaqs);
+      newOpened.add(value);
+      setOpenedFaqs(newOpened);
+
+      // Easter egg: opened all FAQs
+      if (newOpened.size === faqs.length && !allOpenedTriggered) {
+        setAllOpenedTriggered(true);
+        confetti({
+          particleCount: 80,
+          spread: 60,
+          origin: { y: 0.7 },
+          colors: ['#10b981', '#34d399', '#6ee7b7'],
+        });
+        toast({
+          title: "🎓 Thorough Researcher Badge!",
+          description: "You read ALL the FAQs? You're either very thorough or very bored. Either way, hired!",
+        });
+      }
+    }
+  };
+
   return (
     <section className="space-y-4 animate-fade-in" style={{ animationDelay: "0.65s" }}>
       <h2 className="text-xl sm:text-2xl font-display font-bold text-foreground text-center">
@@ -44,7 +74,7 @@ const FAQSection = () => {
       </p>
       <Card>
         <CardContent className="p-4 sm:p-6">
-          <Accordion type="single" collapsible className="w-full">
+          <Accordion type="single" collapsible className="w-full" onValueChange={handleValueChange}>
             {faqs.map((faq, index) => (
               <AccordionItem key={index} value={`item-${index}`}>
                 <AccordionTrigger className="text-left text-sm sm:text-base hover:text-primary transition-colors">
@@ -58,6 +88,11 @@ const FAQSection = () => {
           </Accordion>
         </CardContent>
       </Card>
+      {openedFaqs.size > 0 && !allOpenedTriggered && (
+        <p className="text-center text-xs text-muted-foreground/50">
+          {openedFaqs.size}/{faqs.length} FAQs explored... 👀
+        </p>
+      )}
     </section>
   );
 };
