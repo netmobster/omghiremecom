@@ -476,8 +476,8 @@ const ProfilePage = () => {
           <h2 className="text-xl sm:text-2xl font-display font-bold text-foreground text-center">
             Let's Chat
           </h2>
-          <Card>
-            <CardContent className="p-6">
+          <Card className="overflow-hidden">
+            <CardContent className="p-4 sm:p-6">
               <div className="space-y-4">
                 <div className="grid sm:grid-cols-2 gap-4">
                   <Input placeholder="Your name" value={formData.name} onChange={e => setFormData({
@@ -500,17 +500,17 @@ const ProfilePage = () => {
                     Select one — note there are only 4 wright answers
                   </p>
                   <div className="grid gap-2">
-                    <Button type="button" onClick={() => handleSubmit("WTF - Confused but intrigued")} disabled={isSubmitting} variant="outline" className="w-full py-4 text-sm hover:bg-primary hover:text-primary-foreground transition-all">
+                    <Button type="button" onClick={() => handleSubmit("WTF - Confused but intrigued")} disabled={isSubmitting} variant="outline" className="w-full h-auto py-3 sm:py-4 text-xs sm:text-sm hover:bg-primary hover:text-primary-foreground transition-all whitespace-normal text-center">
                       WTF, I want to talk but IDK why
                     </Button>
-                    <Button type="button" onClick={() => handleSubmit("Sigh, okay fine!")} disabled={isSubmitting} variant="outline" className="w-full py-4 text-sm hover:bg-secondary hover:text-secondary-foreground transition-all">
+                    <Button type="button" onClick={() => handleSubmit("Sigh, okay fine!")} disabled={isSubmitting} variant="outline" className="w-full h-auto py-3 sm:py-4 text-xs sm:text-sm hover:bg-secondary hover:text-secondary-foreground transition-all whitespace-normal text-center">
                       Sigh... okay, fine!
                     </Button>
-                    <Button type="button" onClick={handleAreYouSingle} variant="outline" className="w-full py-4 text-sm hover:bg-destructive hover:text-destructive-foreground transition-all">
+                    <Button type="button" onClick={handleAreYouSingle} variant="outline" className="w-full h-auto py-3 sm:py-4 text-xs sm:text-sm hover:bg-destructive hover:text-destructive-foreground transition-all whitespace-normal text-center">
                       Are you single?
                     </Button>
-                    <Button type="button" onClick={() => handleSubmit("Let's talk for realz")} disabled={isSubmitting} className="w-full gradient-primary text-primary-foreground hover:opacity-90 py-4 text-sm font-semibold">
-                      <Send className="mr-2 w-4 h-4" />
+                    <Button type="button" onClick={() => handleSubmit("Let's talk for realz")} disabled={isSubmitting} className="w-full gradient-primary text-primary-foreground hover:opacity-90 h-auto py-3 sm:py-4 text-xs sm:text-sm font-semibold whitespace-normal text-center">
+                      <Send className="mr-2 w-4 h-4 shrink-0" />
                       Let's talk for realz, Jay
                     </Button>
                   </div>
