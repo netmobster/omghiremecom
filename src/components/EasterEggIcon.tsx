@@ -34,6 +34,7 @@ const EasterEggIcon = () => {
         allFound ? "text-yellow-500" : hasFoundAny ? "text-foreground" : "text-muted-foreground"
       )}>
         {displayFound}/{displayTotal}
+        {allFound && <span className="text-xs ml-1 opacity-80">...wait what?</span>}
       </span>
     </Link>
   );
