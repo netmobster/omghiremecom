@@ -98,9 +98,8 @@ const ProfilePage = () => {
   const [emailCopied, setEmailCopied] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [singleClickCount, setSingleClickCount] = useState(0);
-  const {
-    toast
-  } = useToast();
+  const [readingTimeClicks, setReadingTimeClicks] = useState(0);
+  const { toast } = useToast();
   useEffect(() => {
     const handleScroll = () => {
       setShowBackToTop(window.scrollY > 400);
@@ -113,6 +112,33 @@ const ProfilePage = () => {
       top: 0,
       behavior: 'smooth'
     });
+  };
+  
+  // Easter egg: clicking reading time
+  const handleReadingTimeClick = () => {
+    const newCount = readingTimeClicks + 1;
+    setReadingTimeClicks(newCount);
+    
+    const messages = [
+      { title: "⏱️ Time is relative", description: "Einstein said that. Or was it a recruiter?" },
+      { title: "⏱️ Still clicking?", description: "The reading time doesn't actually change, you know." },
+      { title: "⏱️ Okay, I see you", description: "You really like clicking things, huh?" },
+    ];
+    
+    if (newCount <= 3) {
+      toast(messages[newCount - 1]);
+    } else if (newCount === 5) {
+      confetti({
+        particleCount: 50,
+        spread: 45,
+        origin: { y: 0.2 },
+      });
+      toast({
+        title: "⏰ Time Lord Achievement!",
+        description: "You've mastered the art of wasting time productively. That's a skill!",
+      });
+      setReadingTimeClicks(0);
+    }
   };
   const handleCopyEmail = () => {
     navigator.clipboard.writeText("wearecleardigital@gmail.com");
@@ -279,8 +305,11 @@ const ProfilePage = () => {
   return <div className="min-h-screen gradient-bg overflow-x-hidden print:bg-white print:text-black">
       <ThemeToggle />
       <div className="max-w-2xl mx-auto px-4 sm:px-6 space-y-10 sm:space-y-12 py-8 sm:py-12">
-        {/* Reading time indicator */}
-        <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground print:hidden">
+        {/* Reading time indicator - clickable easter egg */}
+        <div 
+          onClick={handleReadingTimeClick}
+          className="flex items-center justify-center gap-2 text-sm text-muted-foreground print:hidden cursor-pointer hover:text-foreground transition-colors"
+        >
           <Clock className="w-4 h-4" />
           <span>~3 min read (or 47 min if you go down rabbit holes)</span>
         </div>

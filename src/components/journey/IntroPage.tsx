@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sparkles, ArrowRight, Info } from "lucide-react";
 import TypewriterText from "./TypewriterText";
+import { useToast } from "@/hooks/use-toast";
+import confetti from "canvas-confetti";
 
 interface IntroPageProps {
   onNext: () => void;
@@ -9,15 +11,38 @@ interface IntroPageProps {
 
 const IntroPage = ({ onNext }: IntroPageProps) => {
   const [typewriterDone, setTypewriterDone] = useState(false);
+  const [sparkleClicks, setSparkleClicks] = useState(0);
+  const { toast } = useToast();
+
+  // Easter egg: click sparkles 7 times
+  const handleSparkleClick = () => {
+    const newCount = sparkleClicks + 1;
+    setSparkleClicks(newCount);
+    
+    if (newCount === 7) {
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.3 },
+        shapes: ['star'],
+        colors: ['#ffd700', '#ffed4a', '#f6e05e'],
+      });
+      toast({
+        title: "✨ Sparkle Master Unlocked!",
+        description: "You clicked all the sparkles! You must really like shiny things.",
+      });
+      setSparkleClicks(0);
+    }
+  };
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6 gradient-bg">
       <div className="max-w-md w-full text-center space-y-8 animate-fade-in">
-        {/* Playful sparkle decoration */}
-        <div className="flex justify-center gap-2 text-primary">
-          <Sparkles className="w-6 h-6 animate-pulse" />
-          <Sparkles className="w-8 h-8 animate-pulse delay-100" />
-          <Sparkles className="w-6 h-6 animate-pulse delay-200" />
+        {/* Playful sparkle decoration - clickable easter egg */}
+        <div className="flex justify-center gap-2 text-primary cursor-pointer" onClick={handleSparkleClick}>
+          <Sparkles className="w-6 h-6 animate-pulse hover:scale-125 transition-transform" />
+          <Sparkles className="w-8 h-8 animate-pulse delay-100 hover:scale-125 transition-transform" />
+          <Sparkles className="w-6 h-6 animate-pulse delay-200 hover:scale-125 transition-transform" />
         </div>
 
         {/* Main headline with typewriter effect */}
