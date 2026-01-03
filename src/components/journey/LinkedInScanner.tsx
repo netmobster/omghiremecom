@@ -109,10 +109,13 @@ const LinkedInScanner = ({ onNext }: LinkedInScannerProps) => {
           <div className="space-y-2">
             <Progress value={progress} className="h-2" />
             <p className="text-sm text-muted-foreground">
-              {progress < 30 && "Accessing LinkedIn API..."}
-              {progress >= 30 && progress < 60 && "Extracting your data..."}
-              {progress >= 60 && progress < 90 && "Analyzing your experience..."}
-              {progress >= 90 && "Almost done..."}
+              {progress < 15 && "Accessing LinkedIn API..."}
+              {progress >= 15 && progress < 30 && "Calculating your buzzword density..."}
+              {progress >= 30 && progress < 45 && "Checking if you've said 'synergy' unironically..."}
+              {progress >= 45 && progress < 60 && "Analyzing endorsements for 'Microsoft Word'..."}
+              {progress >= 60 && progress < 75 && "Measuring thought leadership levels..."}
+              {progress >= 75 && progress < 90 && "Consulting the hiring gods..."}
+              {progress >= 90 && "Almost done... probably..."}
             </p>
           </div>
         </div>

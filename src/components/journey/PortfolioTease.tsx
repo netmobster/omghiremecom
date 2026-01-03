@@ -1,19 +1,63 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Upload, Video, ArrowRight, PartyPopper } from "lucide-react";
+import { Upload, Video, ArrowRight, PartyPopper, Loader2 } from "lucide-react";
 
 interface PortfolioTeaseProps {
   onNext: () => void;
 }
 
+const absurdLoadingMessages = [
+  "Initializing video codec... just kidding, I don't know what that means...",
+  "Consulting the hiring gods...",
+  "Checking if your webcam is judging you...",
+  "Calculating how awkward this video would be...",
+  "Estimating time to regret this decision...",
+  "Buffering your enthusiasm...",
+];
+
 const PortfolioTease = ({ onNext }: PortfolioTeaseProps) => {
-  const [showJoke, setShowJoke] = useState(false);
+  const [stage, setStage] = useState<"initial" | "loading" | "joke">("initial");
+  const [loadingMessageIndex, setLoadingMessageIndex] = useState(0);
 
   const handleUploadClick = () => {
-    setShowJoke(true);
+    setStage("loading");
   };
 
-  if (showJoke) {
+  useEffect(() => {
+    if (stage === "loading") {
+      // Cycle through loading messages
+      const messageInterval = setInterval(() => {
+        setLoadingMessageIndex(prev => {
+          if (prev >= absurdLoadingMessages.length - 1) {
+            clearInterval(messageInterval);
+            setStage("joke");
+            return prev;
+          }
+          return prev + 1;
+        });
+      }, 1200);
+      
+      return () => clearInterval(messageInterval);
+    }
+  }, [stage]);
+
+  if (stage === "loading") {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center p-6 gradient-bg">
+        <div className="max-w-md w-full text-center space-y-6 animate-fade-in">
+          <Loader2 className="w-16 h-16 mx-auto text-primary animate-spin" />
+          <h2 className="text-2xl font-display font-bold text-foreground">
+            Uploading...
+          </h2>
+          <p className="text-muted-foreground min-h-[3em] transition-all">
+            {absurdLoadingMessages[loadingMessageIndex]}
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  if (stage === "joke") {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center p-6 gradient-bg">
         <div className="max-w-md w-full text-center space-y-6 animate-bounce-in">

@@ -6,10 +6,12 @@ import { Textarea } from "@/components/ui/textarea";
 import { supabase } from "@/integrations/supabase/client";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { Linkedin, FileText, Mail, ExternalLink, ChevronLeft, ChevronRight, ChevronDown, ChevronUp, Heart, Send, User, X, Share2, Twitter, Facebook, Link, Shield, Telescope, TrendingUp, Music, Banana, Rocket, Copy, Check, Cog, Compass } from "lucide-react";
+import { Linkedin, FileText, Mail, ExternalLink, ChevronLeft, ChevronRight, ChevronDown, ChevronUp, Heart, Send, User, X, Share2, Twitter, Facebook, Link, Shield, Telescope, TrendingUp, Music, Banana, Rocket, Copy, Check, Cog, Compass, MessageSquare, Clock } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import confetti from "canvas-confetti";
+import ThemeToggle from "@/components/ThemeToggle";
+import FAQSection from "./FAQSection";
 import wllArchitect from "@/assets/WLL_architect.png";
 import avatarEmoji from "@/assets/avatar-emoji.png";
 import avatarLinkedin from "@/assets/avatar-linkedin.jpg";
@@ -95,6 +97,7 @@ const ProfilePage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [emailCopied, setEmailCopied] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [singleClickCount, setSingleClickCount] = useState(0);
   const {
     toast
   } = useToast();
@@ -122,7 +125,21 @@ const ProfilePage = () => {
   };
   const shareUrl = typeof window !== 'undefined' ? `${window.location.origin}/realness` : '/realness';
   const shareText = "Check out Jeremy Wright's interactive portfolio - it's unlike any resume you've seen!";
-  const handleShare = (platform: string) => {
+  const handleShare = async (platform: string) => {
+    // Try native share first for mobile
+    if (platform === 'native' && navigator.share) {
+      try {
+        await navigator.share({
+          title: "OMG Hire Me! - Jeremy Wright",
+          text: shareText,
+          url: shareUrl,
+        });
+        return;
+      } catch (err) {
+        // User cancelled or error, fall through to copy
+      }
+    }
+    
     let url = '';
     switch (platform) {
       case 'twitter':
@@ -134,6 +151,16 @@ const ProfilePage = () => {
       case 'facebook':
         url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
         break;
+      case 'slack':
+        url = `https://slack.com/share?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}`;
+        break;
+      case 'teams':
+        url = `https://teams.microsoft.com/share?href=${encodeURIComponent(shareUrl)}&msgText=${encodeURIComponent(shareText)}`;
+        break;
+      case 'email':
+        url = `mailto:?subject=${encodeURIComponent("You HAVE to see this portfolio")}&body=${encodeURIComponent(`${shareText}\n\n${shareUrl}`)}`;
+        window.location.href = url;
+        return;
       case 'copy':
         navigator.clipboard.writeText(shareUrl);
         toast({
@@ -218,21 +245,53 @@ const ProfilePage = () => {
     }
   };
   const handleAreYouSingle = () => {
+    setSingleClickCount(prev => prev + 1);
+    
+    if (singleClickCount >= 4) {
+      // Easter egg unlocked!
+      confetti({
+        particleCount: 50,
+        spread: 60,
+        origin: { y: 0.7 },
+        colors: ['#ff69b4', '#ff1493', '#ff6b6b'],
+      });
+      toast({
+        title: "🎉 Easter egg unlocked!",
+        description: "Fine, I'll tell you: I'm happily taken. But I appreciate the persistence!",
+      });
+      setSingleClickCount(0);
+      return;
+    }
+    
+    const responses = [
+      "Not that kind of hiring! 😅",
+      "Still not that kind of hiring! 🙄", 
+      "Okay you're persistent... 🤔",
+      "One more click and something might happen... 👀",
+    ];
+    
     toast({
       title: "COME ON!",
-      description: "Not that kind of hiring! 😅",
+      description: responses[singleClickCount] || responses[0],
       variant: "destructive"
     });
   };
-  return <div className="min-h-screen gradient-bg overflow-x-hidden">
+  return <div className="min-h-screen gradient-bg overflow-x-hidden print:bg-white print:text-black">
+      <ThemeToggle />
       <div className="max-w-2xl mx-auto px-4 sm:px-6 space-y-10 sm:space-y-12 py-8 sm:py-12">
+        {/* Reading time indicator */}
+        <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground print:hidden">
+          <Clock className="w-4 h-4" />
+          <span>~3 min read (or 47 min if you go down rabbit holes)</span>
+        </div>
+
         {/* Avatar Section */}
         <section className="text-center space-y-4 animate-fade-in">
-          <div onClick={handleAvatarClick} className="relative w-40 h-40 mx-auto rounded-full overflow-hidden cursor-pointer hover:scale-105 transition-transform group shadow-xl">
+          <div onClick={handleAvatarClick} className="relative w-40 h-40 mx-auto rounded-full overflow-hidden cursor-pointer hover:scale-105 transition-transform group shadow-xl print:shadow-none">
             {avatarStages[avatarIndex].image ? <img src={avatarStages[avatarIndex].image} alt={avatarStages[avatarIndex].label} className="w-full h-full object-cover" /> : <div className="w-full h-full gradient-primary flex items-center justify-center">
                 <User className="w-20 h-20 text-primary-foreground" />
               </div>}
-            <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors flex items-center justify-center">
+            <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors flex items-center justify-center print:hidden">
               <span className="text-xs text-primary-foreground opacity-0 group-hover:opacity-100 transition-opacity font-medium drop-shadow-lg">
                 Click for more realness!
               </span>
@@ -340,7 +399,7 @@ const ProfilePage = () => {
             The Goods
           </h2>
           <div className="grid sm:grid-cols-2 gap-4">
-            <Card className="hover:shadow-lg transition-shadow cursor-pointer group overflow-hidden" onClick={() => window.open("/Jeremy_Wright_Resume.pdf", "_blank")}>
+            <Card className="hover:shadow-lg hover-lift cursor-pointer group overflow-hidden" onClick={() => window.open("/Jeremy_Wright_Resume.pdf", "_blank")}>
               <CardContent className="p-4 sm:p-6 flex items-center gap-3 sm:gap-4">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-coral/10 flex items-center justify-center group-hover:scale-110 transition-transform shrink-0">
                   <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-coral" />
@@ -351,7 +410,7 @@ const ProfilePage = () => {
                 </div>
               </CardContent>
             </Card>
-            <Card className="hover:shadow-lg transition-shadow cursor-pointer group overflow-hidden" onClick={() => window.open("/Jeremy_Wright_Portfolio.pdf", "_blank")}>
+            <Card className="hover:shadow-lg hover-lift cursor-pointer group overflow-hidden" onClick={() => window.open("/Jeremy_Wright_Portfolio.pdf", "_blank")}>
               <CardContent className="p-4 sm:p-6 flex items-center gap-3 sm:gap-4">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-teal/10 flex items-center justify-center group-hover:scale-110 transition-transform shrink-0">
                   <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-teal" />
@@ -381,7 +440,14 @@ const ProfilePage = () => {
                 <h3 className="font-display font-bold text-sm sm:text-lg text-foreground">Know someone who should hire me?</h3>
               </div>
               <p className="text-sm text-muted-foreground">Sharing is caring (and gets me hired)</p>
-              <div className="flex justify-center gap-3">
+              <div className="flex flex-wrap justify-center gap-3">
+                {/* Native share for mobile */}
+                {'share' in navigator && (
+                  <Button variant="outline" size="sm" className="rounded-full hover:bg-primary hover:text-primary-foreground transition-all gap-2 sm:hidden" onClick={() => handleShare('native')}>
+                    <Share2 className="w-4 h-4" />
+                    Share
+                  </Button>
+                )}
                 <Button variant="outline" size="icon" className="rounded-full hover:bg-[#1DA1F2] hover:text-white hover:border-[#1DA1F2] transition-all" onClick={() => handleShare('twitter')}>
                   <Twitter className="w-4 h-4" />
                 </Button>
@@ -390,6 +456,15 @@ const ProfilePage = () => {
                 </Button>
                 <Button variant="outline" size="icon" className="rounded-full hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2] transition-all" onClick={() => handleShare('facebook')}>
                   <Facebook className="w-4 h-4" />
+                </Button>
+                <Button variant="outline" size="icon" className="rounded-full hover:bg-[#4A154B] hover:text-white hover:border-[#4A154B] transition-all" onClick={() => handleShare('slack')} title="Share to Slack">
+                  <MessageSquare className="w-4 h-4" />
+                </Button>
+                <Button variant="outline" size="icon" className="rounded-full hover:bg-[#6264A7] hover:text-white hover:border-[#6264A7] transition-all" onClick={() => handleShare('teams')} title="Share to Teams">
+                  <Mail className="w-4 h-4" />
+                </Button>
+                <Button variant="outline" size="icon" className="rounded-full hover:bg-accent hover:text-accent-foreground hover:border-accent transition-all" onClick={() => handleShare('email')} title="Email to a colleague">
+                  <Send className="w-4 h-4" />
                 </Button>
                 <Button variant="outline" size="icon" className="rounded-full hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all" onClick={() => handleShare('copy')}>
                   <Link className="w-4 h-4" />
@@ -439,50 +514,50 @@ const ProfilePage = () => {
         <section className="grid sm:grid-cols-2 gap-4 animate-fade-in" style={{
         animationDelay: "0.5s"
       }}>
-          <Card className="border-success/30 bg-success/5">
+          <Card className="border-success/30 bg-success/5 hover-lift">
             <CardContent className="p-4 sm:p-6 space-y-3 sm:space-y-4">
               <h3 className="font-display font-bold text-base sm:text-lg text-success flex items-center gap-2">
                 ✓ Hire Me If
               </h3>
               <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm">
-                <li className="flex items-start gap-2 sm:gap-3">
+                <li className="flex items-start gap-2 sm:gap-3 hover:translate-x-1 transition-transform">
                   <Shield className="w-4 h-4 sm:w-5 sm:h-5 text-success shrink-0 mt-0.5" />
                   <span className="text-foreground">You want someone who chases their dreams without screwing with others</span>
                 </li>
-                <li className="flex items-start gap-2 sm:gap-3">
+                <li className="flex items-start gap-2 sm:gap-3 hover:translate-x-1 transition-transform">
                   <Telescope className="w-4 h-4 sm:w-5 sm:h-5 text-success shrink-0 mt-0.5" />
                   <span className="text-foreground">You need someone who sees the future (wrote the first global social media marketing book, like, evar)</span>
                 </li>
-                <li className="flex items-start gap-2 sm:gap-3">
+                <li className="flex items-start gap-2 sm:gap-3 hover:translate-x-1 transition-transform">
                   <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-success shrink-0 mt-0.5" />
                   <span className="text-foreground">You want someone who grows shiz (repeatedly, and to scale)</span>
                 </li>
-                <li className="flex items-start gap-2 sm:gap-3">
+                <li className="flex items-start gap-2 sm:gap-3 hover:translate-x-1 transition-transform">
                   <Cog className="w-4 h-4 sm:w-5 sm:h-5 text-success shrink-0 mt-0.5" />
                   <span className="text-foreground">You want to make sure your $100k HubSpot (or other) implementation actually works before you hire a team to run it</span>
                 </li>
               </ul>
             </CardContent>
           </Card>
-          <Card className="border-destructive/30 bg-destructive/5">
+          <Card className="border-destructive/30 bg-destructive/5 hover-lift">
             <CardContent className="p-4 sm:p-6 space-y-3 sm:space-y-4">
               <h3 className="font-display font-bold text-base sm:text-lg text-destructive flex items-center gap-2">
                 ✗ Don't Hire Me If
               </h3>
               <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm">
-                <li className="flex items-start gap-2 sm:gap-3">
+                <li className="flex items-start gap-2 sm:gap-3 hover:translate-x-1 transition-transform">
                   <Music className="w-4 h-4 sm:w-5 sm:h-5 text-destructive shrink-0 mt-0.5" />
                   <span className="text-foreground">You don't like joy (I'm a musician, deal with it)</span>
                 </li>
-                <li className="flex items-start gap-2 sm:gap-3">
+                <li className="flex items-start gap-2 sm:gap-3 hover:translate-x-1 transition-transform">
                   <Banana className="w-4 h-4 sm:w-5 sm:h-5 text-destructive shrink-0 mt-0.5" />
                   <span className="text-foreground">Memes aren't real life (I'm the "banana for scale" guy on Imgur)</span>
                 </li>
-                <li className="flex items-start gap-2 sm:gap-3">
+                <li className="flex items-start gap-2 sm:gap-3 hover:translate-x-1 transition-transform">
                   <Rocket className="w-4 h-4 sm:w-5 sm:h-5 text-destructive shrink-0 mt-0.5" />
                   <span className="text-foreground">Geeks aren't sexy (sci-fi comedy writer — my mom says I'm funny!)</span>
                 </li>
-                <li className="flex items-start gap-2 sm:gap-3">
+                <li className="flex items-start gap-2 sm:gap-3 hover:translate-x-1 transition-transform">
                   <Compass className="w-4 h-4 sm:w-5 sm:h-5 text-destructive shrink-0 mt-0.5" />
                   <span className="text-foreground">You want a "Marketing Manager" to execute a pre-defined checklist; hire me if you need an Architect to build for your dream</span>
                 </li>
@@ -555,9 +630,21 @@ const ProfilePage = () => {
           </Card>
         </section>
 
+        {/* FAQ Section */}
+        <FAQSection />
+
         {/* Footer */}
-        <footer className="text-center text-sm text-muted-foreground pb-8">
+        <footer className="text-center text-sm text-muted-foreground pb-8 print:pt-8">
           <p>Made with ❤️ and a healthy dose of self-awareness.</p>
+          <p className="mt-2 text-xs text-muted-foreground/50 print:hidden">
+            <button 
+              onClick={() => window.print()}
+              className="hover:text-muted-foreground underline transition-colors"
+            >
+              Print this page
+            </button>
+            {" "}(for your fridge, obviously)
+          </p>
         </footer>
       </div>
 
