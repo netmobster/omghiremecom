@@ -197,7 +197,7 @@ const SwipeGame = ({ onNext }: SwipeGameProps) => {
         </div>
 
         <p className="text-center text-xs text-muted-foreground">
-          Pro tip: You can only swipe right. 😉
+          Pro tip: Swiping left tooootally works! 😉
         </p>
       </div>
     </div>
