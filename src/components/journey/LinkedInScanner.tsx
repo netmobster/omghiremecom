@@ -145,10 +145,11 @@ const LinkedInScanner = ({ onNext }: LinkedInScannerProps) => {
         <div className="space-y-4">
           <Input
             type="url"
-            placeholder="https://linkedin.com/company/..."
+            placeholder="https://linkedin.com/in/... (anything works, I'm not actually checking)"
             value={linkedinUrl}
             onChange={(e) => setLinkedinUrl(e.target.value)}
             className="text-center h-14 text-lg rounded-xl"
+            autoFocus
           />
           <Button
             onClick={handleScan}

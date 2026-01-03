@@ -456,17 +456,32 @@ const Secrets = () => {
                 Hint: Some secrets are hidden in plain sight. Others require a bit more... persistence
                 <span 
                   onClick={() => {
-                    EASTER_EGGS.forEach(egg => discoverEgg(egg.id));
+                    // Fire staggered toasts for each achievement
+                    EASTER_EGGS.forEach((egg, index) => {
+                      setTimeout(() => {
+                        discoverEgg(egg.id);
+                        toast({
+                          title: `${egg.icon} ${egg.name}!`,
+                          description: egg.description,
+                        });
+                      }, index * 150);
+                    });
+                    
+                    // Fire confetti immediately
                     confetti({
                       particleCount: 200,
                       spread: 100,
                       origin: { y: 0.6 },
                       colors: ['#ffd700', '#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4'],
                     });
-                    toast({
-                      title: "🎉 ALL ACHIEVEMENTS UNLOCKED!",
-                      description: "You found the secret secret. You absolute legend.",
-                    });
+                    
+                    // Final celebratory toast after all individual ones
+                    setTimeout(() => {
+                      toast({
+                        title: "🏆 ALL ACHIEVEMENTS UNLOCKED!",
+                        description: "You found the secret secret. You absolute legend.",
+                      });
+                    }, EASTER_EGGS.length * 150 + 300);
                   }}
                   className="cursor-default select-none text-muted-foreground/60 hover:text-primary/70 transition-colors duration-300"
                 >
