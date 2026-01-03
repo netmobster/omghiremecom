@@ -468,7 +468,7 @@ const Secrets = () => {
                       description: "You found the secret secret. You absolute legend.",
                     });
                   }}
-                  className="cursor-default select-none hover:text-primary transition-colors"
+                  className="cursor-default select-none text-muted-foreground/60 hover:text-primary/70 transition-colors duration-300"
                 >
                   .
                 </span>
