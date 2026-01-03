@@ -38,7 +38,7 @@ const LinkedInScanner = ({ onNext }: LinkedInScannerProps) => {
   if (stage === "joke") {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center p-6 gradient-bg">
-        <div className="max-w-md w-full text-center space-y-6 animate-bounce-in">
+        <div className="max-w-md md:max-w-xl w-full text-center space-y-6 animate-bounce-in">
           <div className="text-6xl">
             <PartyPopper className="w-16 h-16 mx-auto text-accent" />
           </div>
@@ -69,7 +69,7 @@ const LinkedInScanner = ({ onNext }: LinkedInScannerProps) => {
   if (stage === "scanned") {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center p-6 gradient-bg">
-        <div className="max-w-md w-full text-center space-y-6 animate-fade-in">
+        <div className="max-w-md md:max-w-xl w-full text-center space-y-6 animate-fade-in">
           <div className="w-20 h-20 rounded-full bg-success/10 flex items-center justify-center mx-auto">
             <Scan className="w-10 h-10 text-success" />
           </div>
@@ -95,7 +95,7 @@ const LinkedInScanner = ({ onNext }: LinkedInScannerProps) => {
   if (stage === "scanning") {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center p-6 gradient-bg">
-        <div className="max-w-md w-full text-center space-y-6">
+        <div className="max-w-md md:max-w-xl w-full text-center space-y-6">
           <div className="relative">
             <div className="w-24 h-24 rounded-full gradient-secondary flex items-center justify-center mx-auto">
               <Linkedin className="w-12 h-12 text-secondary-foreground animate-pulse" />
@@ -125,7 +125,7 @@ const LinkedInScanner = ({ onNext }: LinkedInScannerProps) => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6 gradient-bg">
-      <div className="max-w-md w-full text-center space-y-8 animate-fade-in">
+      <div className="max-w-md md:max-w-xl w-full text-center space-y-8 animate-fade-in">
         {/* Icon */}
         <div className="w-20 h-20 rounded-full gradient-secondary flex items-center justify-center mx-auto">
           <Linkedin className="w-10 h-10 text-secondary-foreground" />

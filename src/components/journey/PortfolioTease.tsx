@@ -40,7 +40,7 @@ const PortfolioTease = ({ onNext }: PortfolioTeaseProps) => {
   if (stage === "loading") {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center p-6 gradient-bg">
-        <div className="max-w-md w-full text-center space-y-6 animate-fade-in">
+        <div className="max-w-md md:max-w-xl w-full text-center space-y-6 animate-fade-in">
           <Loader2 className="w-16 h-16 mx-auto text-primary animate-spin" />
           <h2 className="text-2xl font-display font-bold text-foreground">
             Uploading...
@@ -56,7 +56,7 @@ const PortfolioTease = ({ onNext }: PortfolioTeaseProps) => {
   if (stage === "joke") {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center p-6 gradient-bg">
-        <div className="max-w-md w-full text-center space-y-6 animate-bounce-in">
+        <div className="max-w-md md:max-w-xl w-full text-center space-y-6 animate-bounce-in">
           <div className="text-6xl">
             <PartyPopper className="w-16 h-16 mx-auto text-accent" />
           </div>
@@ -87,7 +87,7 @@ const PortfolioTease = ({ onNext }: PortfolioTeaseProps) => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6 gradient-bg">
-      <div className="max-w-md w-full text-center space-y-8 animate-fade-in">
+      <div className="max-w-md md:max-w-xl w-full text-center space-y-8 animate-fade-in">
         {/* Icon */}
         <div className="relative inline-block">
           <div className="w-24 h-24 rounded-full gradient-secondary flex items-center justify-center mx-auto">
