@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { EasterEggProvider } from "@/contexts/EasterEggContext";
 import EasterEggIcon from "@/components/EasterEggIcon";
 import EasterEggCompletionHandler from "@/components/EasterEggCompletionHandler";
+import { usePrintTracker } from "@/hooks/usePrintTracker";
 import Index from "./pages/Index";
 import Realness from "./pages/Realness";
 import Secrets from "./pages/Secrets";
@@ -15,6 +16,27 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
+// Component to use hooks within the provider
+const AppContent = () => {
+  usePrintTracker();
+  
+  return (
+    <>
+      <EasterEggIcon />
+      <EasterEggCompletionHandler />
+      <Routes>
+        <Route path="/" element={<Index />} />
+        <Route path="/realness" element={<Realness />} />
+        <Route path="/secrets" element={<Secrets />} />
+        <Route path="/how-built" element={<HowBuilt />} />
+        <Route path="/about" element={<About />} />
+        {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </>
+  );
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <EasterEggProvider>
@@ -22,17 +44,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <EasterEggIcon />
-          <EasterEggCompletionHandler />
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/realness" element={<Realness />} />
-            <Route path="/secrets" element={<Secrets />} />
-            <Route path="/how-built" element={<HowBuilt />} />
-            <Route path="/about" element={<About />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <AppContent />
         </BrowserRouter>
       </TooltipProvider>
     </EasterEggProvider>

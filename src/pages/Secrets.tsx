@@ -148,7 +148,7 @@ const Secrets = () => {
   return (
     <div className="min-h-screen gradient-bg">
       <ThemeToggle />
-      <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8 sm:py-12 space-y-8">
+      <div className="max-w-2xl md:max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12 space-y-8">
         {/* Header */}
         <div className="space-y-4">
           <Link to="/">
@@ -168,7 +168,8 @@ const Secrets = () => {
               Secret Achievements
             </h1>
             <p className="text-muted-foreground">
-              You've discovered {totalFound} of {totalEggs} hidden easter eggs
+              You've discovered {allFound ? totalFound + 1 : totalFound} of {allFound ? totalEggs + 1 : totalEggs} hidden easter eggs
+              {allFound && <span className="text-yellow-500 ml-1">(wait, what?!)</span>}
             </p>
           </div>
 
@@ -402,6 +403,34 @@ const Secrets = () => {
                     <div>
                       <span className="font-medium text-foreground">Persistent Romantic:</span>
                       <span className="text-muted-foreground"> Keep clicking "Are you single?" in the FAQ</span>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-lg">🕳️</span>
+                    <div>
+                      <span className="font-medium text-foreground">Gazed Into The Abyss:</span>
+                      <span className="text-muted-foreground"> Accept the Terms & Conditions on the intro page</span>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-lg">🦉</span>
+                    <div>
+                      <span className="font-medium text-foreground">Night Owl:</span>
+                      <span className="text-muted-foreground"> Toggle between light and dark mode 5 times</span>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-lg">📎</span>
+                    <div>
+                      <span className="font-medium text-foreground">Resume Stalker:</span>
+                      <span className="text-muted-foreground"> Download both the Resume AND Portfolio PDFs</span>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-lg">🖨️</span>
+                    <div>
+                      <span className="font-medium text-foreground">Print Enthusiast:</span>
+                      <span className="text-muted-foreground"> Try to print the page (Ctrl+P / Cmd+P)</span>
                     </div>
                   </li>
                 </ul>

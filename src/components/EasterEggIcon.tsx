@@ -8,6 +8,10 @@ const EasterEggIcon = () => {
   const hasFoundAny = totalFound > 0;
   const allFound = totalFound === totalEggs;
 
+  // Show totalFound + 1 when all eggs are found (super secret achievement)
+  const displayTotal = allFound ? totalEggs + 1 : totalEggs;
+  const displayFound = allFound ? totalFound + 1 : totalFound;
+
   return (
     <Link
       to="/secrets"
@@ -29,7 +33,7 @@ const EasterEggIcon = () => {
         "text-sm font-medium",
         allFound ? "text-yellow-500" : hasFoundAny ? "text-foreground" : "text-muted-foreground"
       )}>
-        {totalFound}/{totalEggs}
+        {displayFound}/{displayTotal}
       </span>
     </Link>
   );
