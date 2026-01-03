@@ -487,6 +487,14 @@ const ProfilePage = () => {
                   <ChevronRight className="w-4 h-4" />
                 </Button>
               </div>
+              <a
+                href="https://linkedin.com/in/jeremywright"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-muted-foreground/60 hover:text-muted-foreground transition-colors"
+              >
+                (see the real testimonials on LinkedIn if you're bored)
+              </a>
             </CardContent>
           </Card>
         </section>
