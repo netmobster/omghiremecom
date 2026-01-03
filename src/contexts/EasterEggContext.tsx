@@ -51,6 +51,13 @@ export const EASTER_EGGS: EasterEgg[] = [
     hint: "FAQ: Persistence pays off... or does it?",
     icon: "💕",
   },
+  {
+    id: "abyss_gazer",
+    name: "Gazed Into The Abyss",
+    description: "Accepted your fate in the Terms & Conditions",
+    hint: "Legal: The fine print reveals all...",
+    icon: "🕳️",
+  },
 ];
 
 type EasterEggContextType = {

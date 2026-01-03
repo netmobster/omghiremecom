@@ -138,6 +138,7 @@ const IntroPage = ({ onNext }: IntroPageProps) => {
             <DialogFooter className="sm:justify-center">
               <Button 
                 onClick={() => {
+                  discoverEgg("abyss_gazer");
                   confetti({
                     particleCount: 100,
                     spread: 70,
