@@ -5,7 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { supabase } from "@/integrations/supabase/client";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Linkedin, FileText, Mail, ExternalLink, ChevronLeft, ChevronRight, Heart, Send, User, X, Share2, Twitter, Facebook, Link, Shield, Telescope, TrendingUp, Music, Banana, Rocket } from "lucide-react";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { Linkedin, FileText, Mail, ExternalLink, ChevronLeft, ChevronRight, ChevronDown, Heart, Send, User, X, Share2, Twitter, Facebook, Link, Shield, Telescope, TrendingUp, Music, Banana, Rocket } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import wllArchitect from "@/assets/WLL_architect.png";
@@ -255,7 +256,15 @@ const ProfilePage = () => {
                   <ExternalLink className="ml-1 w-3 h-3" />
                 </Button>
               </div>
-              <img src={wllArchitect} alt="Work Love Language - The Architect: High-trust, self-directed execution" className="w-full rounded-lg shadow-md" />
+              <Collapsible>
+                <CollapsibleTrigger className="w-full flex items-center justify-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors py-2 group">
+                  <span>See my Work Love Language, no really, it's cool!</span>
+                  <ChevronDown className="w-4 h-4 transition-transform group-data-[state=open]:rotate-180" />
+                </CollapsibleTrigger>
+                <CollapsibleContent className="pt-2">
+                  <img src={wllArchitect} alt="Work Love Language - The Architect: High-trust, self-directed execution" className="w-full rounded-lg shadow-md" />
+                </CollapsibleContent>
+              </Collapsible>
             </CardContent>
           </Card>
         </section>
