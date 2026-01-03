@@ -92,6 +92,7 @@ const testimonials = [
 const ProfilePage = () => {
   const [avatarIndex, setAvatarIndex] = useState(0);
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+  const [galleryIndex, setGalleryIndex] = useState(0);
   const [testimonialIndex, setTestimonialIndex] = useState(0);
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -126,7 +127,16 @@ const ProfilePage = () => {
   };
 
   const handleAvatarClick = () => {
+    setGalleryIndex(0);
     setIsGalleryOpen(true);
+  };
+
+  const handleGalleryPrev = () => {
+    setGalleryIndex((prev) => (prev - 1 + avatarStages.length) % avatarStages.length);
+  };
+
+  const handleGalleryNext = () => {
+    setGalleryIndex((prev) => (prev + 1) % avatarStages.length);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -181,26 +191,62 @@ const ProfilePage = () => {
 
         {/* Avatar Gallery Modal */}
         <Dialog open={isGalleryOpen} onOpenChange={setIsGalleryOpen}>
-          <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-            <DialogHeader>
-              <DialogTitle className="font-display text-xl">The Many Faces of Jeremy</DialogTitle>
-            </DialogHeader>
-            <div className="space-y-8 py-4">
-              {avatarStages.map((stage, index) => (
-                <div key={index} className="space-y-3">
-                  <div className="relative aspect-square max-w-sm mx-auto rounded-xl overflow-hidden shadow-lg">
-                    <img 
-                      src={stage.image} 
-                      alt={stage.label}
-                      className="w-full h-full object-cover"
+          <DialogContent className="max-w-lg p-0 overflow-hidden border-0 bg-transparent shadow-none">
+            <div className="relative bg-card rounded-2xl overflow-hidden shadow-2xl">
+              {/* Close button */}
+              <button
+                onClick={() => setIsGalleryOpen(false)}
+                className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-background/80 backdrop-blur-sm flex items-center justify-center hover:bg-background transition-colors"
+              >
+                <X className="w-4 h-4 text-foreground" />
+              </button>
+
+              {/* Image */}
+              <div className="relative aspect-square">
+                <img 
+                  src={avatarStages[galleryIndex].image} 
+                  alt={avatarStages[galleryIndex].label}
+                  className="w-full h-full object-cover"
+                />
+                
+                {/* Navigation arrows */}
+                <button
+                  onClick={handleGalleryPrev}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/80 backdrop-blur-sm flex items-center justify-center hover:bg-background transition-colors"
+                >
+                  <ChevronLeft className="w-5 h-5 text-foreground" />
+                </button>
+                <button
+                  onClick={handleGalleryNext}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/80 backdrop-blur-sm flex items-center justify-center hover:bg-background transition-colors"
+                >
+                  <ChevronRight className="w-5 h-5 text-foreground" />
+                </button>
+              </div>
+
+              {/* Caption */}
+              <div className="p-6 space-y-2 text-center">
+                <div className="flex justify-center gap-2 mb-3">
+                  {avatarStages.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setGalleryIndex(i)}
+                      className={cn(
+                        "w-2 h-2 rounded-full transition-all",
+                        i === galleryIndex 
+                          ? "bg-primary w-4" 
+                          : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                      )}
                     />
-                  </div>
-                  <div className="text-center space-y-1 px-4">
-                    <h3 className="font-display font-bold text-foreground">{stage.label}</h3>
-                    <p className="text-sm text-muted-foreground italic">{stage.caption}</p>
-                  </div>
+                  ))}
                 </div>
-              ))}
+                <h3 className="font-display font-bold text-lg text-foreground">
+                  {avatarStages[galleryIndex].label}
+                </h3>
+                <p className="text-sm text-muted-foreground italic leading-relaxed">
+                  {avatarStages[galleryIndex].caption}
+                </p>
+              </div>
             </div>
           </DialogContent>
         </Dialog>
