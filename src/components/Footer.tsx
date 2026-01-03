@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Code2, Linkedin, FileText, Briefcase, User, Home } from "lucide-react";
+import { Code2, Linkedin, FileText, Briefcase, User, Home, UserCircle } from "lucide-react";
 import { usePdfTracker } from "@/hooks/usePdfTracker";
 
 const Footer = () => {
@@ -27,6 +27,14 @@ const Footer = () => {
         >
           <User className="w-4 h-4" />
           The Profile
+        </Link>
+        <span className="hidden sm:inline text-muted-foreground/30">•</span>
+        <Link 
+          to="/about" 
+          className="flex items-center gap-1.5 hover:text-foreground transition-colors"
+        >
+          <UserCircle className="w-4 h-4" />
+          About Me
         </Link>
         <span className="hidden sm:inline text-muted-foreground/30">•</span>
         <Link 
