@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { supabase } from "@/integrations/supabase/client";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { Linkedin, FileText, Mail, ExternalLink, ChevronLeft, ChevronRight, ChevronDown, Heart, Send, User, X, Share2, Twitter, Facebook, Link, Shield, Telescope, TrendingUp, Music, Banana, Rocket, Copy, Check } from "lucide-react";
+import { Linkedin, FileText, Mail, ExternalLink, ChevronLeft, ChevronRight, ChevronDown, ChevronUp, Heart, Send, User, X, Share2, Twitter, Facebook, Link, Shield, Telescope, TrendingUp, Music, Banana, Rocket, Copy, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import confetti from "canvas-confetti";
@@ -94,9 +94,22 @@ const ProfilePage = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [emailCopied, setEmailCopied] = useState(false);
+  const [showBackToTop, setShowBackToTop] = useState(false);
   const {
     toast
   } = useToast();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 400);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
   const handleCopyEmail = () => {
     navigator.clipboard.writeText("wearecleardigital@gmail.com");
     setEmailCopied(true);
@@ -540,6 +553,18 @@ const ProfilePage = () => {
           <p>Made with ❤️ and a healthy dose of self-awareness.</p>
         </footer>
       </div>
+
+      {/* Back to Top Button */}
+      <button
+        onClick={scrollToTop}
+        className={cn(
+          "fixed bottom-6 right-6 w-12 h-12 rounded-full bg-primary text-primary-foreground shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-xl z-50",
+          showBackToTop ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
+        )}
+        aria-label="Back to top"
+      >
+        <ChevronUp className="w-5 h-5" />
+      </button>
     </div>;
 };
 export default ProfilePage;
