@@ -20,12 +20,13 @@ import wllArchitect from "@/assets/WLL_architect.png";
 import avatarEmoji from "@/assets/avatar-emoji.png";
 import avatarLinkedin from "@/assets/avatar-linkedin.jpg";
 import avatarMcdonalds from "@/assets/avatar-mcdonalds.jpg";
+import avatarJumping from "@/assets/avatar-jumping.jpg";
 
 const avatarStages = [
   { label: "Professional Jay", description: "The LinkedIn version", type: "illustrated", image: avatarEmoji },
   { label: "Real Jay", description: "The headshot", type: "linkedin", image: avatarLinkedin },
   { label: "Realer Jay", description: "McDonald's vibes", type: "mcdonalds", image: avatarMcdonalds },
-  { label: "Realest Jay", description: "Full send", type: "jumping", image: null },
+  { label: "Realest Jay", description: "Full send", type: "jumping", image: avatarJumping },
 ];
 
 const uniqueThings = [
