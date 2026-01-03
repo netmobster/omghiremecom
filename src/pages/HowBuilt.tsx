@@ -1,0 +1,195 @@
+import { Link } from "react-router-dom";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { 
+  ArrowLeft, 
+  Sparkles, 
+  Zap, 
+  Database, 
+  Mail, 
+  Palette, 
+  Egg, 
+  MessageSquare, 
+  Gamepad2, 
+  FileText, 
+  ScanLine, 
+  Heart, 
+  Share2, 
+  Moon, 
+  Printer,
+  ExternalLink,
+  Code2,
+  Rocket
+} from "lucide-react";
+import ThemeToggle from "@/components/ThemeToggle";
+import Footer from "@/components/Footer";
+
+const features = [
+  {
+    icon: Sparkles,
+    title: "AI-Powered Development",
+    description: "Built entirely with Lovable's AI assistant through natural conversation - no traditional coding required."
+  },
+  {
+    icon: Gamepad2,
+    title: "Interactive Journey",
+    description: "A multi-stage experience including a Tinder-style swipe game where you can only swipe right on my traits."
+  },
+  {
+    icon: ScanLine,
+    title: "Fake LinkedIn Scanner",
+    description: "A satirical 'company scanner' animation that pretends to analyze your LinkedIn profile."
+  },
+  {
+    icon: FileText,
+    title: "Portfolio Tease",
+    description: "A joke requirement to upload a 5-minute video before revealing it's all satire."
+  },
+  {
+    icon: Egg,
+    title: "Easter Egg System",
+    description: "6 hidden achievements including Konami code, secret typing, click patterns, and more - with persistent tracking."
+  },
+  {
+    icon: MessageSquare,
+    title: "Satirical FAQ Section",
+    description: "Common interview questions answered with personality and humor."
+  },
+  {
+    icon: Heart,
+    title: "Work Love Language Integration",
+    description: "Links to my custom Work Love Language quiz app, also built with Lovable."
+  },
+  {
+    icon: Mail,
+    title: "Contact Form with Edge Functions",
+    description: "Real email sending via Supabase Edge Functions and Resend API."
+  },
+  {
+    icon: Database,
+    title: "Backend Infrastructure",
+    description: "Powered by Lovable Cloud with Supabase for serverless functions and potential data storage."
+  },
+  {
+    icon: Palette,
+    title: "Custom Design System",
+    description: "Carefully crafted color palette, typography, and component variants using Tailwind CSS."
+  },
+  {
+    icon: Moon,
+    title: "Dark/Light Mode",
+    description: "Professional Mode toggle with theme persistence across sessions."
+  },
+  {
+    icon: Share2,
+    title: "Social Sharing",
+    description: "One-click sharing to Twitter, LinkedIn, Facebook, Slack, Teams, and more."
+  },
+  {
+    icon: Printer,
+    title: "Print-Friendly Styling",
+    description: "Custom print CSS that creates a clean, professional resume-style output."
+  },
+  {
+    icon: Zap,
+    title: "Confetti Celebrations",
+    description: "Strategic confetti explosions for achievements, form submissions, and easter eggs."
+  },
+];
+
+const HowBuilt = () => {
+  return (
+    <div className="min-h-screen gradient-bg">
+      <ThemeToggle />
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12 space-y-8">
+        {/* Header */}
+        <div className="space-y-4">
+          <Link to="/">
+            <Button variant="ghost" size="sm" className="gap-2">
+              <ArrowLeft className="w-4 h-4" />
+              Back to Journey
+            </Button>
+          </Link>
+          
+          <div className="text-center space-y-4">
+            <div className="flex justify-center">
+              <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center">
+                <Code2 className="w-8 h-8 text-primary" />
+              </div>
+            </div>
+            <h1 className="text-3xl sm:text-4xl font-display font-bold text-foreground">
+              How This Was Built
+            </h1>
+            <p className="text-muted-foreground max-w-xl mx-auto">
+              This entire site was built using <span className="text-primary font-semibold">Lovable</span> — 
+              an AI-powered development platform that turns conversations into production-ready web applications.
+            </p>
+          </div>
+        </div>
+
+        {/* Lovable CTA */}
+        <Card className="border-2 border-primary/30 bg-primary/5">
+          <CardContent className="p-6 flex flex-col sm:flex-row items-center gap-4">
+            <div className="w-14 h-14 rounded-xl bg-primary/20 flex items-center justify-center shrink-0">
+              <Rocket className="w-7 h-7 text-primary" />
+            </div>
+            <div className="flex-1 text-center sm:text-left">
+              <h2 className="font-display font-bold text-lg text-foreground">
+                Want to build something like this?
+              </h2>
+              <p className="text-muted-foreground text-sm">
+                No coding required. Just describe what you want and watch it come to life.
+              </p>
+            </div>
+            <Button 
+              onClick={() => window.open("https://lovable.dev", "_blank")}
+              className="shrink-0 gap-2"
+            >
+              Try Lovable
+              <ExternalLink className="w-4 h-4" />
+            </Button>
+          </CardContent>
+        </Card>
+
+        {/* Features Grid */}
+        <div className="space-y-4">
+          <h2 className="text-xl font-display font-bold text-foreground text-center">
+            Features & Tech Stack
+          </h2>
+          <div className="grid gap-3">
+            {features.map((feature, index) => (
+              <Card key={index} className="transition-all hover:border-primary/30">
+                <CardContent className="p-4 flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                    <feature.icon className="w-5 h-5 text-primary" />
+                  </div>
+                  <div className="space-y-1">
+                    <h3 className="font-display font-semibold text-foreground">
+                      {feature.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      {feature.description}
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* Footer note */}
+        <div className="text-center space-y-2 pt-4 border-t border-border/50">
+          <p className="text-sm text-muted-foreground">
+            Built with ❤️ and a lot of AI assistance
+          </p>
+          <p className="text-xs text-muted-foreground/60">
+            Total development time: Way less than you would think
+          </p>
+        </div>
+        <Footer />
+      </div>
+    </div>
+  );
+};
+
+export default HowBuilt;

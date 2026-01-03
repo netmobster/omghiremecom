@@ -5,6 +5,7 @@ import TypewriterText from "./TypewriterText";
 import { useToast } from "@/hooks/use-toast";
 import confetti from "canvas-confetti";
 import { useEasterEggs } from "@/contexts/EasterEggContext";
+import Footer from "@/components/Footer";
 
 interface IntroPageProps {
   onNext: () => void;
@@ -109,6 +110,7 @@ const IntroPage = ({ onNext }: IntroPageProps) => {
         >
           Terms & Extremely Reasonable Conditions
         </button>
+        <Footer />
       </div>
     </div>
   );

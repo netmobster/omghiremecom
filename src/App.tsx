@@ -9,6 +9,7 @@ import EasterEggCompletionHandler from "@/components/EasterEggCompletionHandler"
 import Index from "./pages/Index";
 import Realness from "./pages/Realness";
 import Secrets from "./pages/Secrets";
+import HowBuilt from "./pages/HowBuilt";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/realness" element={<Realness />} />
             <Route path="/secrets" element={<Secrets />} />
+            <Route path="/how-built" element={<HowBuilt />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
