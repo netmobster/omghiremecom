@@ -139,7 +139,7 @@ const ProfilePage = () => {
       });
       return;
     }
-    
+
     // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
@@ -164,14 +164,15 @@ const ProfilePage = () => {
         }
       });
       if (error) throw error;
-      
+
       // Celebrate with confetti!
       confetti({
         particleCount: 100,
         spread: 70,
-        origin: { y: 0.6 }
+        origin: {
+          y: 0.6
+        }
       });
-      
       toast({
         title: "Email sent! You lucky ducky!",
         description: "I'll get back to you faster than you can say 'full-stack marketer'."
@@ -355,7 +356,7 @@ const ProfilePage = () => {
                 <Share2 className="w-5 h-5 text-primary shrink-0" />
                 <h3 className="font-display font-bold text-base sm:text-lg text-foreground">Know someone who should hire me?</h3>
               </div>
-              <p className="text-sm text-muted-foreground">Sharing is caring (and gets me employed)</p>
+              <p className="text-sm text-muted-foreground">Sharing is caring (and gets me hired)</p>
               <div className="flex justify-center gap-3">
                 <Button variant="outline" size="icon" className="rounded-full hover:bg-[#1DA1F2] hover:text-white hover:border-[#1DA1F2] transition-all" onClick={() => handleShare('twitter')}>
                   <Twitter className="w-4 h-4" />
@@ -506,10 +507,7 @@ const ProfilePage = () => {
                   <p className="text-center text-xs text-muted-foreground">
                     (That's what people call me in places that can't pronounce R's, okay?)
                   </p>
-                  <a 
-                    href="mailto:wearecleardigital@gmail.com" 
-                    className="flex items-center justify-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors pt-2"
-                  >
+                  <a href="mailto:wearecleardigital@gmail.com" className="flex items-center justify-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors pt-2">
                     To get in touch directly, my super secret email is <span className="underline">wearecleardigital@gmail.com</span>
                     <ExternalLink className="w-3 h-3" />
                   </a>
