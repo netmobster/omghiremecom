@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { EasterEggProvider } from "@/contexts/EasterEggContext";
 import EasterEggIcon from "@/components/EasterEggIcon";
+import EasterEggCompletionHandler from "@/components/EasterEggCompletionHandler";
 import Index from "./pages/Index";
 import Realness from "./pages/Realness";
 import Secrets from "./pages/Secrets";
@@ -20,6 +21,7 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <EasterEggIcon />
+          <EasterEggCompletionHandler />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/realness" element={<Realness />} />

@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 const EasterEggIcon = () => {
   const { totalFound, totalEggs } = useEasterEggs();
   const hasFoundAny = totalFound > 0;
+  const allFound = totalFound === totalEggs;
 
   return (
     <Link
@@ -20,13 +21,13 @@ const EasterEggIcon = () => {
     >
       <Egg 
         className={cn(
-          "w-5 h-5 transition-colors",
-          hasFoundAny ? "text-primary" : "text-muted-foreground"
+          "w-5 h-5 transition-colors animate-bounce",
+          allFound ? "text-yellow-500" : hasFoundAny ? "text-primary" : "text-muted-foreground"
         )} 
       />
       <span className={cn(
         "text-sm font-medium",
-        hasFoundAny ? "text-foreground" : "text-muted-foreground"
+        allFound ? "text-yellow-500" : hasFoundAny ? "text-foreground" : "text-muted-foreground"
       )}>
         {totalFound}/{totalEggs}
       </span>

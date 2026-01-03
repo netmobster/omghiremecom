@@ -59,6 +59,8 @@ type EasterEggContextType = {
   hasFound: (id: string) => boolean;
   totalFound: number;
   totalEggs: number;
+  justCompletedAll: boolean;
+  clearJustCompleted: () => void;
 };
 
 const EasterEggContext = createContext<EasterEggContextType | undefined>(undefined);
@@ -74,6 +76,7 @@ export const EasterEggProvider = ({ children }: { children: ReactNode }) => {
       return new Set();
     }
   });
+  const [justCompletedAll, setJustCompletedAll] = useState(false);
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify([...foundEggs]));
@@ -81,13 +84,20 @@ export const EasterEggProvider = ({ children }: { children: ReactNode }) => {
 
   const discoverEgg = (id: string) => {
     setFoundEggs((prev) => {
+      if (prev.has(id)) return prev;
       const next = new Set(prev);
       next.add(id);
+      // Check if this discovery completes the collection
+      if (next.size === EASTER_EGGS.length) {
+        setJustCompletedAll(true);
+      }
       return next;
     });
   };
 
   const hasFound = (id: string) => foundEggs.has(id);
+  
+  const clearJustCompleted = () => setJustCompletedAll(false);
 
   return (
     <EasterEggContext.Provider
@@ -97,6 +107,8 @@ export const EasterEggProvider = ({ children }: { children: ReactNode }) => {
         hasFound,
         totalFound: foundEggs.size,
         totalEggs: EASTER_EGGS.length,
+        justCompletedAll,
+        clearJustCompleted,
       }}
     >
       {children}
