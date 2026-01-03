@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sparkles, ArrowRight, Info } from "lucide-react";
-import TypewriterText from "./TypewriterText";
 import { useToast } from "@/hooks/use-toast";
 import confetti from "canvas-confetti";
 import { useEasterEggs } from "@/contexts/EasterEggContext";
@@ -12,7 +11,6 @@ interface IntroPageProps {
 }
 
 const IntroPage = ({ onNext }: IntroPageProps) => {
-  const [typewriterDone, setTypewriterDone] = useState(false);
   const [sparkleClicks, setSparkleClicks] = useState(0);
   const { toast } = useToast();
   const { discoverEgg } = useEasterEggs();
@@ -49,13 +47,9 @@ const IntroPage = ({ onNext }: IntroPageProps) => {
           <Sparkles className="w-6 h-6 animate-pulse delay-200 hover:scale-125 transition-transform" />
         </div>
 
-        {/* Main headline with typewriter effect */}
-        <h1 className="text-4xl md:text-5xl font-display font-bold text-gradient-primary leading-tight min-h-[2.5em]">
-          <TypewriterText 
-            text="Oh, You Want to Hire Me?" 
-            delay={60}
-            onComplete={() => setTypewriterDone(true)}
-          />
+        {/* Main headline */}
+        <h1 className="text-4xl md:text-5xl font-display font-bold text-gradient-primary leading-tight">
+          Oh, You Want to Hire Me?
         </h1>
 
         {/* Subheadline */}

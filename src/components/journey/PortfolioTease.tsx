@@ -126,6 +126,15 @@ const PortfolioTease = ({ onNext }: PortfolioTeaseProps) => {
         <p className="text-xs text-muted-foreground">
           This is totally reasonable and not at all a double standard.
         </p>
+
+        {/* Skip button - obvious for those who think it's real */}
+        <Button
+          onClick={onNext}
+          variant="ghost"
+          className="text-muted-foreground hover:text-foreground"
+        >
+          Wait, this is a joke right? Skip →
+        </Button>
       </div>
     </div>
   );
