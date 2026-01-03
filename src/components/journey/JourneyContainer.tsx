@@ -1,18 +1,23 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import IntroPage from "./IntroPage";
 import SwipeGame from "./SwipeGame";
 import PortfolioTease from "./PortfolioTease";
 import LinkedInScanner from "./LinkedInScanner";
-import ProfilePage from "./ProfilePage";
 
-type Stage = "intro" | "swipe" | "portfolio" | "linkedin" | "profile";
+type Stage = "intro" | "swipe" | "portfolio" | "linkedin";
 
 const JourneyContainer = () => {
   const [currentStage, setCurrentStage] = useState<Stage>("intro");
+  const navigate = useNavigate();
 
   const goToStage = (stage: Stage) => {
     setCurrentStage(stage);
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const goToProfile = () => {
+    navigate("/realness");
   };
 
   switch (currentStage) {
@@ -23,9 +28,7 @@ const JourneyContainer = () => {
     case "portfolio":
       return <PortfolioTease onNext={() => goToStage("linkedin")} />;
     case "linkedin":
-      return <LinkedInScanner onNext={() => goToStage("profile")} />;
-    case "profile":
-      return <ProfilePage />;
+      return <LinkedInScanner onNext={goToProfile} />;
     default:
       return <IntroPage onNext={() => goToStage("swipe")} />;
   }
