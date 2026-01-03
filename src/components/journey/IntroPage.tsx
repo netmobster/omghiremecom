@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Sparkles, ArrowRight } from "lucide-react";
+import { Sparkles, ArrowRight, Info } from "lucide-react";
 
 interface IntroPageProps {
   onNext: () => void;
@@ -26,6 +26,12 @@ const IntroPage = ({ onNext }: IntroPageProps) => {
           Bold move. I like it. But first, let's see if{" "}
           <span className="text-foreground font-semibold">you're</span> the right fit.
         </p>
+
+        {/* Satire tip */}
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 border border-accent/30 text-xs text-muted-foreground">
+          <Info className="w-3 h-3 text-accent" />
+          <span>Psst... this is satire. I promise I'm actually quite pleasant to work with.</span>
+        </div>
 
         {/* What's coming teaser */}
         <div className="bg-card/50 backdrop-blur-sm rounded-2xl p-6 border border-border/50 space-y-3">
