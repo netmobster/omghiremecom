@@ -12,6 +12,7 @@ import { useToast } from "@/hooks/use-toast";
 import confetti from "canvas-confetti";
 import ThemeToggle from "@/components/ThemeToggle";
 import FAQSection from "./FAQSection";
+import { useEasterEggs } from "@/contexts/EasterEggContext";
 import wllArchitect from "@/assets/WLL_architect.png";
 import avatarEmoji from "@/assets/avatar-emoji.png";
 import avatarLinkedin from "@/assets/avatar-linkedin.jpg";
@@ -100,6 +101,7 @@ const ProfilePage = () => {
   const [singleClickCount, setSingleClickCount] = useState(0);
   const [readingTimeClicks, setReadingTimeClicks] = useState(0);
   const { toast } = useToast();
+  const { discoverEgg } = useEasterEggs();
   useEffect(() => {
     const handleScroll = () => {
       setShowBackToTop(window.scrollY > 400);
@@ -128,6 +130,7 @@ const ProfilePage = () => {
     if (newCount <= 3) {
       toast(messages[newCount - 1]);
     } else if (newCount === 5) {
+      discoverEgg("time_lord");
       confetti({
         particleCount: 50,
         spread: 45,
@@ -275,6 +278,7 @@ const ProfilePage = () => {
     
     if (singleClickCount >= 4) {
       // Easter egg unlocked!
+      discoverEgg("persistent_flirt");
       confetti({
         particleCount: 50,
         spread: 60,

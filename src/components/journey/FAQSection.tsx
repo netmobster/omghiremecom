@@ -8,6 +8,7 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import confetti from "canvas-confetti";
+import { useEasterEggs } from "@/contexts/EasterEggContext";
 
 const faqs = [
   {
@@ -40,6 +41,7 @@ const FAQSection = () => {
   const [openedFaqs, setOpenedFaqs] = useState<Set<string>>(new Set());
   const [allOpenedTriggered, setAllOpenedTriggered] = useState(false);
   const { toast } = useToast();
+  const { discoverEgg } = useEasterEggs();
 
   const handleValueChange = (value: string) => {
     if (value && !openedFaqs.has(value)) {
@@ -50,6 +52,7 @@ const FAQSection = () => {
       // Easter egg: opened all FAQs
       if (newOpened.size === faqs.length && !allOpenedTriggered) {
         setAllOpenedTriggered(true);
+        discoverEgg("faq_nerd");
         confetti({
           particleCount: 80,
           spread: 60,
