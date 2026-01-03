@@ -58,7 +58,6 @@ const certifications = [
       "Google Analytics 4 (GA4)",
       "Google Ads (Search, Display, Video)",
       "Meta Blueprint",
-      "Salesforce Marketing Cloud",
       "Semrush SEO Toolkit",
     ]
   },
@@ -68,9 +67,6 @@ const certifications = [
     items: [
       "PMP (Project Management Professional) - PMI",
       "AMA Professional Certified Marketer (PCM)",
-      "Product Marketing Alliance (PMA) Certified",
-      "Pragmatic Institute Certified",
-      "AIPMM Certified Product Marketing Manager",
     ]
   },
   {
