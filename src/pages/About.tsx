@@ -88,8 +88,8 @@ const certifications = [
 ];
 
 const links = [
-  { name: "Resume", href: "/Jeremy_Wright_Resume.pdf", icon: FileText, external: true },
-  { name: "Portfolio", href: "/Jeremy_Wright_Portfolio.pdf", icon: Briefcase, external: true },
+  { name: "Resume (PDF)", href: "/Jeremy_Wright_Resume.pdf", icon: FileText, external: true },
+  { name: "Portfolio (PDF)", href: "/Jeremy_Wright_Portfolio.pdf", icon: Briefcase, external: true },
   { name: "LinkedIn", href: "https://linkedin.com/in/jeremywright", icon: Linkedin, external: true },
 ];
 
