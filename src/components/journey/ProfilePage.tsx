@@ -139,8 +139,16 @@ const ProfilePage = () => {
     setGalleryIndex((prev) => (prev + 1) % avatarStages.length);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (subject: string) => {
+    if (!formData.name || !formData.email) {
+      toast({
+        title: "Hold up!",
+        description: "I need at least your name and email to get back to you.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     setIsSubmitting(true);
     
     // Placeholder - will integrate with Cloud later
@@ -152,6 +160,14 @@ const ProfilePage = () => {
       setFormData({ name: "", email: "", message: "" });
       setIsSubmitting(false);
     }, 1000);
+  };
+
+  const handleAreYouSingle = () => {
+    toast({
+      title: "COME ON!",
+      description: "Not that kind of hiring! 😅",
+      variant: "destructive",
+    });
   };
 
   return (
@@ -484,13 +500,12 @@ const ProfilePage = () => {
           </h2>
           <Card>
             <CardContent className="p-6">
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="space-y-4">
                 <div className="grid sm:grid-cols-2 gap-4">
                   <Input
                     placeholder="Your name"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    required
                     className="h-12"
                   />
                   <Input
@@ -498,32 +513,63 @@ const ProfilePage = () => {
                     placeholder="Your email"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    required
                     className="h-12"
                   />
                 </div>
                 <Textarea
-                  placeholder="What's on your mind?"
+                  placeholder="What's on your mind? (optional)"
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  required
-                  rows={4}
+                  rows={3}
                 />
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full gradient-primary text-primary-foreground hover:opacity-90 transition-all py-6 text-lg font-semibold"
-                >
-                  {isSubmitting ? (
-                    "Sending..."
-                  ) : (
-                    <>
-                      <Send className="mr-2 w-5 h-5" />
-                      Send Message
-                    </>
-                  )}
-                </Button>
-              </form>
+                
+                {/* Fun submit buttons */}
+                <div className="space-y-3 pt-2">
+                  <p className="text-center text-sm text-muted-foreground italic">
+                    Select one — note there are only 4 wright answers
+                  </p>
+                  <div className="grid gap-2">
+                    <Button
+                      type="button"
+                      onClick={() => handleSubmit("WTF - Confused but intrigued")}
+                      disabled={isSubmitting}
+                      variant="outline"
+                      className="w-full py-4 text-sm hover:bg-primary hover:text-primary-foreground transition-all"
+                    >
+                      WTF, I want to talk but IDK why
+                    </Button>
+                    <Button
+                      type="button"
+                      onClick={() => handleSubmit("Sigh, okay fine")}
+                      disabled={isSubmitting}
+                      variant="outline"
+                      className="w-full py-4 text-sm hover:bg-secondary hover:text-secondary-foreground transition-all"
+                    >
+                      Sigh... okay, fine
+                    </Button>
+                    <Button
+                      type="button"
+                      onClick={handleAreYouSingle}
+                      variant="outline"
+                      className="w-full py-4 text-sm hover:bg-destructive hover:text-destructive-foreground transition-all"
+                    >
+                      Are you single?
+                    </Button>
+                    <Button
+                      type="button"
+                      onClick={() => handleSubmit("Let's talk for realz")}
+                      disabled={isSubmitting}
+                      className="w-full gradient-primary text-primary-foreground hover:opacity-90 py-4 text-sm font-semibold"
+                    >
+                      <Send className="mr-2 w-4 h-4" />
+                      Let's talk for realz, Jay
+                    </Button>
+                  </div>
+                  <p className="text-center text-xs text-muted-foreground">
+                    (That's what people call me in places that can't pronounce R's, okay?)
+                  </p>
+                </div>
+              </div>
             </CardContent>
           </Card>
         </section>
