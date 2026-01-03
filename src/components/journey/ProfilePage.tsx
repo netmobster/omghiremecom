@@ -171,7 +171,7 @@ const ProfilePage = () => {
       if (error) throw error;
 
       toast({
-        title: "Message received! 🎉",
+        title: "Email sent! You lucky ducky!",
         description: "I'll get back to you faster than you can say 'full-stack marketer'.",
       });
       setFormData({ name: "", email: "", message: "" });

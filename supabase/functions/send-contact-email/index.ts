@@ -33,7 +33,7 @@ const handler = async (req: Request): Promise<Response> => {
       body: JSON.stringify({
         from: "Jeremy Wright Portfolio <onboarding@resend.dev>",
         to: ["wearecleardigital@gmail.com"],
-        subject: `Portfolio Contact: ${subject}`,
+        subject: `FROM OMG: ${subject}`,
         html: `
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
             <h1 style="color: #8B5CF6;">New Contact from Portfolio!</h1>
