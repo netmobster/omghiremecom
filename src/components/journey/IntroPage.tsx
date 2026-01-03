@@ -4,6 +4,7 @@ import { Sparkles, ArrowRight, Info } from "lucide-react";
 import TypewriterText from "./TypewriterText";
 import { useToast } from "@/hooks/use-toast";
 import confetti from "canvas-confetti";
+import { useEasterEggs } from "@/contexts/EasterEggContext";
 
 interface IntroPageProps {
   onNext: () => void;
@@ -13,6 +14,7 @@ const IntroPage = ({ onNext }: IntroPageProps) => {
   const [typewriterDone, setTypewriterDone] = useState(false);
   const [sparkleClicks, setSparkleClicks] = useState(0);
   const { toast } = useToast();
+  const { discoverEgg } = useEasterEggs();
 
   // Easter egg: click sparkles 7 times
   const handleSparkleClick = () => {
@@ -20,6 +22,7 @@ const IntroPage = ({ onNext }: IntroPageProps) => {
     setSparkleClicks(newCount);
     
     if (newCount === 7) {
+      discoverEgg("sparkle");
       confetti({
         particleCount: 100,
         spread: 70,
