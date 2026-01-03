@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { 
   ArrowLeft, 
   Megaphone, 
@@ -20,7 +21,9 @@ import {
   FileText,
   Briefcase,
   Linkedin,
-  ExternalLink
+  ExternalLink,
+  Award,
+  GraduationCap
 } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
 import Footer from "@/components/Footer";
@@ -41,6 +44,51 @@ const skills = [
   { name: "Customer Experience", icon: Heart, description: "Journey optimization" },
   { name: "Brand Strategy", icon: Sparkles, description: "Identity & positioning" },
   { name: "Partnerships", icon: Handshake, description: "Alliances & business dev" },
+];
+
+const certifications = [
+  {
+    category: "Platform & Tools",
+    icon: Award,
+    items: [
+      "HubSpot Inbound Marketing",
+      "HubSpot Content Marketing",
+      "HubSpot Email Marketing",
+      "HubSpot Marketing Software",
+      "Google Analytics 4 (GA4)",
+      "Google Ads (Search, Display, Video)",
+      "Meta Blueprint",
+      "Salesforce Marketing Cloud",
+      "Semrush SEO Toolkit",
+    ]
+  },
+  {
+    category: "Strategy & Leadership",
+    icon: GraduationCap,
+    items: [
+      "PMP (Project Management Professional) - PMI",
+      "AMA Professional Certified Marketer (PCM)",
+      "Product Marketing Alliance (PMA) Certified",
+      "Pragmatic Institute Certified",
+      "AIPMM Certified Product Marketing Manager",
+    ]
+  },
+  {
+    category: "AI & Emerging Tech",
+    icon: Bot,
+    items: [
+      "HubSpot AI for Marketers",
+      "Google AI Essentials",
+    ]
+  },
+  {
+    category: "Agency & Partner",
+    icon: Handshake,
+    items: [
+      "Google Partner Certified",
+      "HubSpot Solutions Partner",
+    ]
+  },
 ];
 
 const links = [
@@ -129,6 +177,38 @@ const About = () => {
                   <div>
                     <h3 className="font-medium text-foreground">{skill.name}</h3>
                     <p className="text-xs text-muted-foreground">{skill.description}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* Certifications Section */}
+        <div className="space-y-4">
+          <h2 className="text-2xl font-display font-bold text-foreground text-center md:text-left">
+            Certifications
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {certifications.map((cert, index) => (
+              <Card 
+                key={cert.category}
+                className="hover:border-primary/30 transition-all duration-300 animate-fade-in"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <CardContent className="p-4 space-y-3">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+                      <cert.icon className="w-4 h-4 text-primary" />
+                    </div>
+                    <h3 className="font-display font-semibold text-foreground">{cert.category}</h3>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {cert.items.map((item) => (
+                      <Badge key={item} variant="secondary" className="text-xs">
+                        {item}
+                      </Badge>
+                    ))}
                   </div>
                 </CardContent>
               </Card>
