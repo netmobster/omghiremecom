@@ -20,7 +20,7 @@ const JourneyProgress = ({ currentStep, totalSteps }: JourneyProgressProps) => {
         </span>
         <span className="text-muted-foreground">•</span>
         <span className="text-muted-foreground">
-          {currentStep} of {totalSteps}
+          Step {currentStep} of {totalSteps}
         </span>
         <div className="flex gap-1 ml-2">
           {Array.from({ length: totalSteps }).map((_, i) => (
