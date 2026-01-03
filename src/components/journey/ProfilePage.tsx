@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
+import wllArchitect from "@/assets/WLL_architect.png";
 
 const avatarStages = [
   { label: "Professional Jay", description: "The LinkedIn version", type: "illustrated" },
@@ -107,7 +108,7 @@ const ProfilePage = () => {
         {/* Work Love Language */}
         <section className="animate-fade-in" style={{ animationDelay: "0.1s" }}>
           <Card className="overflow-hidden border-2 border-primary/20 hover:border-primary/40 transition-colors">
-            <CardContent className="p-6">
+            <CardContent className="p-6 space-y-4">
               <div className="flex items-center gap-4">
                 <div className="w-14 h-14 rounded-xl gradient-fun flex items-center justify-center shrink-0">
                   <Heart className="w-7 h-7 text-accent-foreground" />
@@ -126,6 +127,11 @@ const ProfilePage = () => {
                   <ExternalLink className="ml-1 w-3 h-3" />
                 </Button>
               </div>
+              <img 
+                src={wllArchitect} 
+                alt="Work Love Language - The Architect: High-trust, self-directed execution" 
+                className="w-full rounded-lg shadow-md"
+              />
             </CardContent>
           </Card>
         </section>
