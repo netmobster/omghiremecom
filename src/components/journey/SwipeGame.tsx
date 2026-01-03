@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Heart, X, Check, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -65,7 +65,7 @@ const SwipeGame = ({ onNext }: SwipeGameProps) => {
   const currentTrait = traits[currentIndex];
   const isComplete = completedTraits.length === traits.length;
 
-  const handleSwipeRight = () => {
+  const handleSwipeRight = useCallback(() => {
     if (isAnimating) return;
     
     setError(null);
@@ -78,9 +78,9 @@ const SwipeGame = ({ onNext }: SwipeGameProps) => {
       setIsAnimating(false);
       setAnimationType(null);
     }, 500);
-  };
+  }, [isAnimating, currentIndex]);
 
-  const handleSwipeLeft = () => {
+  const handleSwipeLeft = useCallback(() => {
     if (isAnimating) return;
     
     setAnimationType("left");
@@ -92,7 +92,24 @@ const SwipeGame = ({ onNext }: SwipeGameProps) => {
       setIsAnimating(false);
       setAnimationType(null);
     }, 400);
-  };
+  }, [isAnimating]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    if (isComplete) return;
+    
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") {
+        handleSwipeRight();
+      } else if (e.key === "ArrowLeft") {
+        handleSwipeLeft();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isComplete, handleSwipeRight, handleSwipeLeft]);
+
 
   if (isComplete) {
     return (
@@ -203,7 +220,7 @@ const SwipeGame = ({ onNext }: SwipeGameProps) => {
         </div>
 
         <p className="text-center text-xs text-muted-foreground">
-          Pro tip: The X button tooootally works! 😉
+          Pro tip: Use ← → arrow keys, or try the X button! 😉
         </p>
       </div>
     </div>
