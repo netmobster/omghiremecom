@@ -139,6 +139,17 @@ const ProfilePage = () => {
       });
       return;
     }
+    
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      toast({
+        title: "Hmm, that email looks sus...",
+        description: "Please enter a valid email address so I can actually reply!",
+        variant: "destructive"
+      });
+      return;
+    }
     setIsSubmitting(true);
     try {
       const {
