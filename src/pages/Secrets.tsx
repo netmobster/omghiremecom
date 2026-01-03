@@ -451,13 +451,35 @@ const Secrets = () => {
         <p className="text-center text-sm text-muted-foreground italic">
           {allFound 
             ? "You've found them all! You're officially a professional procrastinator. I respect that."
-            : "Hint: Some secrets are hidden in plain sight. Others require a bit more... persistence."
+            : (
+              <>
+                Hint: Some secrets are hidden in plain sight. Others require a bit more... persistence
+                <span 
+                  onClick={() => {
+                    EASTER_EGGS.forEach(egg => discoverEgg(egg.id));
+                    confetti({
+                      particleCount: 200,
+                      spread: 100,
+                      origin: { y: 0.6 },
+                      colors: ['#ffd700', '#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4'],
+                    });
+                    toast({
+                      title: "🎉 ALL ACHIEVEMENTS UNLOCKED!",
+                      description: "You found the secret secret. You absolute legend.",
+                    });
+                  }}
+                  className="cursor-default select-none hover:text-primary transition-colors"
+                >
+                  .
+                </span>
+              </>
+            )
           }
         </p>
 
-        {/* Reset button */}
+        {/* Reset button - shows after unlocking any achievements */}
         {totalFound > 0 && (
-          <div className="text-center pt-4 border-t border-border/50">
+          <div className="text-center pt-4 border-t border-border/50 animate-fade-in">
             <Button
               variant="ghost"
               size="sm"
@@ -477,28 +499,6 @@ const Secrets = () => {
           </div>
         )}
         <Footer />
-        
-        {/* Super secret unlock all */}
-        <div className="text-center pt-8">
-          <span 
-            onClick={() => {
-              EASTER_EGGS.forEach(egg => discoverEgg(egg.id));
-              confetti({
-                particleCount: 200,
-                spread: 100,
-                origin: { y: 0.6 },
-                colors: ['#ffd700', '#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4'],
-              });
-              toast({
-                title: "🎉 ALL ACHIEVEMENTS UNLOCKED!",
-                description: "You found the secret secret. You absolute legend.",
-              });
-            }}
-            className="text-muted-foreground/20 hover:text-muted-foreground/40 cursor-default select-none transition-colors"
-          >
-            .
-          </span>
-        </div>
       </div>
     </div>
   );
