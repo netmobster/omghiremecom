@@ -256,8 +256,8 @@ const ProfilePage = () => {
         colors: ['#ff69b4', '#ff1493', '#ff6b6b'],
       });
       toast({
-        title: "🎉 Easter egg unlocked!",
-        description: "Fine, I'll tell you: I'm happily taken. But I appreciate the persistence!",
+        title: "☕ Okay, okay!",
+        description: "I'm happily happy and that's enough—now buy me a coffee!",
       });
       setSingleClickCount(0);
       return;
