@@ -24,6 +24,12 @@ import {
   Twitter,
   Facebook,
   Link,
+  Shield,
+  Telescope,
+  TrendingUp,
+  Music,
+  Banana,
+  Rocket,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
@@ -471,24 +477,46 @@ const ProfilePage = () => {
 
         {/* Hire Me If / Don't Hire Me If */}
         <section className="grid sm:grid-cols-2 gap-4 animate-fade-in" style={{ animationDelay: "0.5s" }}>
-          <Card className="border-success/30">
-            <CardContent className="p-6 space-y-3">
+          <Card className="border-success/30 bg-success/5">
+            <CardContent className="p-6 space-y-4">
               <h3 className="font-display font-bold text-lg text-success flex items-center gap-2">
                 ✓ Hire Me If
               </h3>
-              <p className="text-muted-foreground text-sm italic">
-                Content coming soon...
-              </p>
+              <ul className="space-y-3 text-sm">
+                <li className="flex items-start gap-3">
+                  <Shield className="w-5 h-5 text-success shrink-0 mt-0.5" />
+                  <span className="text-foreground">You want an army dude with a big heart</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Telescope className="w-5 h-5 text-success shrink-0 mt-0.5" />
+                  <span className="text-foreground">You need someone who sees the future (I blogged about marketing before it was cool)</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <TrendingUp className="w-5 h-5 text-success shrink-0 mt-0.5" />
+                  <span className="text-foreground">You want someone who grows shiz</span>
+                </li>
+              </ul>
             </CardContent>
           </Card>
-          <Card className="border-destructive/30">
-            <CardContent className="p-6 space-y-3">
+          <Card className="border-destructive/30 bg-destructive/5">
+            <CardContent className="p-6 space-y-4">
               <h3 className="font-display font-bold text-lg text-destructive flex items-center gap-2">
                 ✗ Don't Hire Me If
               </h3>
-              <p className="text-muted-foreground text-sm italic">
-                Content coming soon...
-              </p>
+              <ul className="space-y-3 text-sm">
+                <li className="flex items-start gap-3">
+                  <Music className="w-5 h-5 text-destructive shrink-0 mt-0.5" />
+                  <span className="text-foreground">You don't like joy (I'm a musician, deal with it)</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Banana className="w-5 h-5 text-destructive shrink-0 mt-0.5" />
+                  <span className="text-foreground">Memes aren't real life (I'm the "banana for scale" guy on Imgur)</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Rocket className="w-5 h-5 text-destructive shrink-0 mt-0.5" />
+                  <span className="text-foreground">Geeks aren't sexy (sci-fi comedy writer — my mom says I'm funny!)</span>
+                </li>
+              </ul>
             </CardContent>
           </Card>
         </section>
