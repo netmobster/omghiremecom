@@ -155,7 +155,7 @@ const SwipeGame = ({ onNext }: SwipeGameProps) => {
             The Compatibility Test
           </h2>
           <p className="text-muted-foreground text-sm">
-            Swipe right if you like what you see 👉
+            Select your preference for each trait 👇
           </p>
         </div>
 
@@ -203,7 +203,7 @@ const SwipeGame = ({ onNext }: SwipeGameProps) => {
         </div>
 
         <p className="text-center text-xs text-muted-foreground">
-          Pro tip: Swiping left tooootally works! 😉
+          Pro tip: The X button tooootally works! 😉
         </p>
       </div>
     </div>
