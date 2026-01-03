@@ -20,6 +20,10 @@ import {
   Send,
   User,
   X,
+  Share2,
+  Twitter,
+  Facebook,
+  Link,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
@@ -31,25 +35,25 @@ import avatarJumping from "@/assets/avatar-jumping.jpg";
 
 const avatarStages = [
   { 
-    label: "Professional Jay", 
+    label: "Professional Jeremy", 
     description: "The LinkedIn version", 
     image: avatarEmoji,
     caption: "Oh, you want to see the real me? Click on through for professional, personal, and \"okay, yeah, he's a little odd\" (as if you're surprised at this point!)"
   },
   { 
-    label: "Real Jay", 
+    label: "Real Jeremy", 
     description: "The headshot", 
     image: avatarLinkedin,
     caption: "Gawd I hate headshots..."
   },
   { 
-    label: "Realer Jay", 
+    label: "Realer Jeremy", 
     description: "McDonald's vibes", 
     image: avatarMcdonalds,
     caption: "Actual moi, though I do like to rawk hoodies with blazers"
   },
   { 
-    label: "Realest Jay", 
+    label: "Realest Jeremy", 
     description: "Full send", 
     image: avatarJumping,
     caption: "Yeah, see, odd. Friend (to the right), his wedding photog said to \"manly jump\" and this was all of our reaction, without coordinating..."
@@ -69,7 +73,7 @@ const uniqueThings = [
 
 const testimonials = [
   {
-    quote: "Jay brought creativity and strategy together in ways I didn't know were possible.",
+    quote: "Jeremy brought creativity and strategy together in ways I didn't know were possible.",
     author: "Happy Client",
     role: "CEO, Tech Startup",
   },
@@ -79,7 +83,7 @@ const testimonials = [
     role: "Product Manager",
   },
   {
-    quote: "Jay's work speaks for itself. Which is good because they won't stop talking otherwise.",
+    quote: "Jeremy's work speaks for itself. Which is good because he won't stop talking otherwise.",
     author: "Definitely Real Person",
     role: "Testimonial Writer",
   },
@@ -92,6 +96,32 @@ const ProfilePage = () => {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+
+  const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
+  const shareText = "Check out Jeremy Wright's interactive portfolio - it's unlike any resume you've seen!";
+
+  const handleShare = (platform: string) => {
+    let url = '';
+    switch (platform) {
+      case 'twitter':
+        url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(currentUrl)}`;
+        break;
+      case 'linkedin':
+        url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`;
+        break;
+      case 'facebook':
+        url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`;
+        break;
+      case 'copy':
+        navigator.clipboard.writeText(currentUrl);
+        toast({
+          title: "Link copied!",
+          description: "Share it with your favorite hiring manager 😉",
+        });
+        return;
+    }
+    if (url) window.open(url, '_blank', 'width=600,height=400');
+  };
 
   const handleAvatarClick = () => {
     setIsGalleryOpen(true);
@@ -139,7 +169,7 @@ const ProfilePage = () => {
             </div>
           </div>
           <div className="space-y-1">
-            <h1 className="text-3xl font-display font-bold text-foreground">Jay</h1>
+            <h1 className="text-3xl font-display font-bold text-foreground">Jeremy Wright</h1>
             <p className="text-muted-foreground">{avatarStages[avatarIndex].description}</p>
             <p className="text-xs text-muted-foreground">
               Stage {avatarIndex + 1}/{avatarStages.length}: {avatarStages[avatarIndex].label}
@@ -151,7 +181,7 @@ const ProfilePage = () => {
         <Dialog open={isGalleryOpen} onOpenChange={setIsGalleryOpen}>
           <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
             <DialogHeader>
-              <DialogTitle className="font-display text-xl">The Many Faces of Jay</DialogTitle>
+              <DialogTitle className="font-display text-xl">The Many Faces of Jeremy</DialogTitle>
             </DialogHeader>
             <div className="space-y-8 py-4">
               {avatarStages.map((stage, index) => (
@@ -204,10 +234,10 @@ const ProfilePage = () => {
           </Card>
         </section>
 
-        {/* Unique Jay Things */}
+        {/* Unique Jeremy Things */}
         <section className="space-y-4 animate-fade-in" style={{ animationDelay: "0.2s" }}>
           <h2 className="text-2xl font-display font-bold text-foreground text-center">
-            Unique Jay Things
+            Unique Jeremy Things
           </h2>
           <div className="flex flex-wrap justify-center gap-3">
             {uniqueThings.map((thing, i) => (
@@ -271,6 +301,53 @@ const ProfilePage = () => {
             View LinkedIn Profile
             <ExternalLink className="ml-2 w-3 h-3" />
           </Button>
+        </section>
+
+        {/* Share This */}
+        <section className="animate-fade-in" style={{ animationDelay: "0.35s" }}>
+          <Card className="border-2 border-dashed border-primary/30 bg-primary/5">
+            <CardContent className="p-6 text-center space-y-4">
+              <div className="flex items-center justify-center gap-2">
+                <Share2 className="w-5 h-5 text-primary" />
+                <h3 className="font-display font-bold text-lg text-foreground">Know someone who should hire me?</h3>
+              </div>
+              <p className="text-sm text-muted-foreground">Sharing is caring (and gets me employed)</p>
+              <div className="flex justify-center gap-3">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="rounded-full hover:bg-[#1DA1F2] hover:text-white hover:border-[#1DA1F2] transition-all"
+                  onClick={() => handleShare('twitter')}
+                >
+                  <Twitter className="w-4 h-4" />
+                </Button>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="rounded-full hover:bg-[#0A66C2] hover:text-white hover:border-[#0A66C2] transition-all"
+                  onClick={() => handleShare('linkedin')}
+                >
+                  <Linkedin className="w-4 h-4" />
+                </Button>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="rounded-full hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2] transition-all"
+                  onClick={() => handleShare('facebook')}
+                >
+                  <Facebook className="w-4 h-4" />
+                </Button>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="rounded-full hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all"
+                  onClick={() => handleShare('copy')}
+                >
+                  <Link className="w-4 h-4" />
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
         </section>
 
         {/* Testimonials */}
