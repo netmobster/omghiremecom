@@ -145,6 +145,10 @@ const IntroPage = ({ onNext }: IntroPageProps) => {
                     origin: { y: 0.6 },
                     colors: ['#ffd700', '#ff6b6b', '#4ecdc4', '#45b7d1'],
                   });
+                  toast({
+                    title: "🕳️ Gazed Into The Abyss!",
+                    description: "You read the fine print AND accepted? Bold move. The abyss gazes back.",
+                  });
                   setTermsOpen(false);
                 }} 
                 variant="outline"
