@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
-import { Code2, Linkedin, FileText, Briefcase, User, UserCircle, Home } from "lucide-react";
+import { Code2, Linkedin, FileText, Briefcase, User, Home } from "lucide-react";
+import { usePdfTracker } from "@/hooks/usePdfTracker";
 
 const Footer = () => {
+  const { trackDownload } = usePdfTracker();
+
   return (
     <footer className="py-6 mt-8 border-t border-border/30 print:hidden">
       <div className="text-center text-sm text-muted-foreground mb-4">
@@ -38,6 +41,7 @@ const Footer = () => {
           href="/Jeremy_Wright_Resume.pdf" 
           target="_blank" 
           rel="noopener noreferrer"
+          onClick={() => trackDownload("resume")}
           className="flex items-center gap-1.5 hover:text-foreground transition-colors"
         >
           <FileText className="w-4 h-4" />
@@ -48,6 +52,7 @@ const Footer = () => {
           href="/Jeremy_Wright_Portfolio.pdf" 
           target="_blank" 
           rel="noopener noreferrer"
+          onClick={() => trackDownload("portfolio")}
           className="flex items-center gap-1.5 hover:text-foreground transition-colors"
         >
           <Briefcase className="w-4 h-4" />

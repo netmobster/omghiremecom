@@ -58,6 +58,27 @@ export const EASTER_EGGS: EasterEgg[] = [
     hint: "Legal: The fine print reveals all...",
     icon: "🕳️",
   },
+  {
+    id: "night_owl",
+    name: "Night Owl",
+    description: "Couldn't decide between light and dark mode",
+    hint: "Themes: Indecision is a valid life choice (5x)",
+    icon: "🦉",
+  },
+  {
+    id: "resume_stalker",
+    name: "Resume Stalker",
+    description: "Downloaded both the Resume AND Portfolio PDFs",
+    hint: "Documents: Gotta catch 'em all... PDFs edition",
+    icon: "📎",
+  },
+  {
+    id: "print_enthusiast",
+    name: "Print Enthusiast",
+    description: "Tried to print this website like it's 1999",
+    hint: "Printing: Some things never change...",
+    icon: "🖨️",
+  },
 ];
 
 type EasterEggContextType = {

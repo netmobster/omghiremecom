@@ -28,6 +28,7 @@ import {
 import ThemeToggle from "@/components/ThemeToggle";
 import Footer from "@/components/Footer";
 import avatarLinkedin from "@/assets/avatar-linkedin.jpg";
+import { usePdfTracker } from "@/hooks/usePdfTracker";
 
 const skills = [
   { name: "Marketing", icon: Megaphone, description: "Full-funnel strategy & execution" },
@@ -88,12 +89,14 @@ const certifications = [
 ];
 
 const links = [
-  { name: "Resume (PDF)", href: "/Jeremy_Wright_Resume.pdf", icon: FileText, external: true },
-  { name: "Portfolio (PDF)", href: "/Jeremy_Wright_Portfolio.pdf", icon: Briefcase, external: true },
-  { name: "LinkedIn", href: "https://linkedin.com/in/jeremywright", icon: Linkedin, external: true },
+  { name: "Resume (PDF)", href: "/Jeremy_Wright_Resume.pdf", icon: FileText, external: true, pdfType: "resume" as const },
+  { name: "Portfolio (PDF)", href: "/Jeremy_Wright_Portfolio.pdf", icon: Briefcase, external: true, pdfType: "portfolio" as const },
+  { name: "LinkedIn", href: "https://linkedin.com/in/jeremywright", icon: Linkedin, external: true, pdfType: null },
 ];
 
 const About = () => {
+  const { trackDownload } = usePdfTracker();
+  
   return (
     <div className="min-h-screen gradient-bg">
       <ThemeToggle />
@@ -145,6 +148,7 @@ const About = () => {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => link.pdfType && trackDownload(link.pdfType)}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-card border border-border hover:border-primary/50 transition-colors text-sm font-medium text-foreground"
             >
               <link.icon className="w-4 h-4 text-primary" />
