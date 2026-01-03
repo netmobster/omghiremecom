@@ -258,7 +258,7 @@ const ProfilePage = () => {
               </div>
               <Collapsible>
                 <CollapsibleTrigger className="w-full flex items-center justify-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors py-2 group">
-                  <span>See my Work Love Language, no really, it's cool!</span>
+                  <span>See my Work Love Language!  No really, it's cool!</span>
                   <ChevronDown className="w-4 h-4 transition-transform group-data-[state=open]:rotate-180" />
                 </CollapsibleTrigger>
                 <CollapsibleContent className="pt-2">
