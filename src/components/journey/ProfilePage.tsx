@@ -97,7 +97,6 @@ const ProfilePage = () => {
   const {
     toast
   } = useToast();
-  
   const handleCopyEmail = () => {
     navigator.clipboard.writeText("wearecleardigital@gmail.com");
     setEmailCopied(true);
@@ -226,7 +225,7 @@ const ProfilePage = () => {
             </div>
           </div>
           <div className="space-y-1">
-            <h1 className="text-2xl sm:text-3xl font-display font-bold text-foreground">Jeremy Wright - Full-Stack Marketer</h1>
+            <h1 className="text-2xl sm:text-3xl font-display font-bold text-foreground">Jeremy "Jay" Wright - Full-Stack Marketer</h1>
             <p className="text-sm sm:text-base text-muted-foreground">A real profile by a real boy, even if it's satire</p>
           </div>
         </section>
@@ -524,16 +523,8 @@ const ProfilePage = () => {
                       <span className="underline">wearecleardigital@gmail.com</span>
                       <ExternalLink className="w-3 h-3" />
                     </a>
-                    <button
-                      onClick={handleCopyEmail}
-                      className="inline-flex items-center justify-center w-6 h-6 rounded-md hover:bg-muted transition-colors"
-                      title="Copy email"
-                    >
-                      {emailCopied ? (
-                        <Check className="w-3.5 h-3.5 text-green-500" />
-                      ) : (
-                        <Copy className="w-3.5 h-3.5" />
-                      )}
+                    <button onClick={handleCopyEmail} className="inline-flex items-center justify-center w-6 h-6 rounded-md hover:bg-muted transition-colors" title="Copy email">
+                      {emailCopied ? <Check className="w-3.5 h-3.5 text-green-500" /> : <Copy className="w-3.5 h-3.5" />}
                     </button>
                   </div>
                 </div>
