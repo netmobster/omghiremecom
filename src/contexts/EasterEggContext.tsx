@@ -61,6 +61,7 @@ type EasterEggContextType = {
   totalEggs: number;
   justCompletedAll: boolean;
   clearJustCompleted: () => void;
+  resetAll: () => void;
 };
 
 const EasterEggContext = createContext<EasterEggContextType | undefined>(undefined);
@@ -98,6 +99,12 @@ export const EasterEggProvider = ({ children }: { children: ReactNode }) => {
   const hasFound = (id: string) => foundEggs.has(id);
   
   const clearJustCompleted = () => setJustCompletedAll(false);
+  
+  const resetAll = () => {
+    setFoundEggs(new Set());
+    setJustCompletedAll(false);
+    localStorage.removeItem(STORAGE_KEY);
+  };
 
   return (
     <EasterEggContext.Provider
@@ -109,6 +116,7 @@ export const EasterEggProvider = ({ children }: { children: ReactNode }) => {
         totalEggs: EASTER_EGGS.length,
         justCompletedAll,
         clearJustCompleted,
+        resetAll,
       }}
     >
       {children}
