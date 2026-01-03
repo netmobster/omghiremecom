@@ -97,23 +97,25 @@ const ProfilePage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
+  const shareUrl = typeof window !== 'undefined' 
+    ? `${window.location.origin}/realness` 
+    : '/realness';
   const shareText = "Check out Jeremy Wright's interactive portfolio - it's unlike any resume you've seen!";
 
   const handleShare = (platform: string) => {
     let url = '';
     switch (platform) {
       case 'twitter':
-        url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(currentUrl)}`;
+        url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
         break;
       case 'linkedin':
-        url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`;
+        url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
         break;
       case 'facebook':
-        url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`;
+        url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
         break;
       case 'copy':
-        navigator.clipboard.writeText(currentUrl);
+        navigator.clipboard.writeText(shareUrl);
         toast({
           title: "Link copied!",
           description: "Share it with your favorite hiring manager 😉",
