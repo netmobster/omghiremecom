@@ -5,7 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ArrowLeft, Lock, Egg, Trophy, ChevronDown, Send, Gift, Sparkles } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
+import { ArrowLeft, Lock, Egg, Trophy, ChevronDown, Send, Gift, Sparkles, AlertTriangle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import ThemeToggle from "@/components/ThemeToggle";
@@ -14,16 +15,50 @@ import confetti from "canvas-confetti";
 import { useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { useKonamiCode } from "@/hooks/useKonamiCode";
+import { useSecretWord } from "@/hooks/useSecretWord";
 
 const Secrets = () => {
-  const { hasFound, totalFound, totalEggs, resetAll } = useEasterEggs();
+  const { hasFound, totalFound, totalEggs, resetAll, discoverEgg } = useEasterEggs();
   const [celebratedCompletion, setCelebratedCompletion] = useState(false);
   const [prizeOpen, setPrizeOpen] = useState(false);
   const [cheatSheetOpen, setCheatSheetOpen] = useState(false);
+  const [spoilerWarningOpen, setSpoilerWarningOpen] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
   const allFound = totalFound === totalEggs;
+
+  // Easter eggs available on this page
+  useKonamiCode(() => {
+    if (!hasFound("konami")) {
+      discoverEgg("konami");
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 },
+      });
+      toast({
+        title: "🎮 Konami Code Master!",
+        description: "You know the classics. Respect.",
+      });
+    }
+  });
+
+  useSecretWord("hire", () => {
+    if (!hasFound("hire")) {
+      discoverEgg("hire");
+      confetti({
+        particleCount: 80,
+        spread: 60,
+        origin: { y: 0.6 },
+      });
+      toast({
+        title: "💼 Subliminal Messaging!",
+        description: "I see what you did there... and I appreciate it.",
+      });
+    }
+  });
 
   useEffect(() => {
     if (allFound && !celebratedCompletion) {
@@ -277,21 +312,50 @@ const Secrets = () => {
         </div>
 
         {/* Gotta Catch 'Em All Cheat Sheet */}
+        <Button 
+          variant="outline" 
+          className="w-full gap-2"
+          onClick={() => setSpoilerWarningOpen(true)}
+        >
+          <Sparkles className="w-4 h-4" />
+          Gotta Catch 'Em All
+        </Button>
+
+        {/* Spoiler Warning Dialog */}
+        <Dialog open={spoilerWarningOpen} onOpenChange={setSpoilerWarningOpen}>
+          <DialogContent className="max-w-sm">
+            <DialogHeader>
+              <div className="flex justify-center mb-2">
+                <div className="w-12 h-12 rounded-full bg-yellow-500/10 flex items-center justify-center">
+                  <AlertTriangle className="w-6 h-6 text-yellow-500" />
+                </div>
+              </div>
+              <DialogTitle className="text-center font-display">
+                Spoiler Alert!
+              </DialogTitle>
+              <DialogDescription className="text-center">
+                Are you sure you want to see all the answers? Half the fun is discovering them yourself...
+              </DialogDescription>
+            </DialogHeader>
+            <DialogFooter className="flex gap-2 sm:justify-center">
+              <Button variant="outline" onClick={() => setSpoilerWarningOpen(false)}>
+                I'll Keep Hunting
+              </Button>
+              <Button 
+                onClick={() => {
+                  setSpoilerWarningOpen(false);
+                  setCheatSheetOpen(true);
+                }}
+              >
+                Show Me Everything
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+
+        {/* Cheat Sheet Collapsible */}
         <Collapsible open={cheatSheetOpen} onOpenChange={setCheatSheetOpen}>
-          <CollapsibleTrigger asChild>
-            <Button 
-              variant="outline" 
-              className="w-full gap-2"
-            >
-              <Sparkles className="w-4 h-4" />
-              Gotta Catch 'Em All
-              <ChevronDown className={cn(
-                "w-4 h-4 transition-transform ml-auto",
-                cheatSheetOpen && "rotate-180"
-              )} />
-            </Button>
-          </CollapsibleTrigger>
-          <CollapsibleContent className="pt-4">
+          <CollapsibleContent className="pt-2">
             <Card className="bg-card/50 border-border/50">
               <CardContent className="p-4 space-y-3">
                 <p className="text-xs text-muted-foreground italic text-center mb-3">
@@ -341,6 +405,14 @@ const Secrets = () => {
                     </div>
                   </li>
                 </ul>
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="w-full mt-2 text-muted-foreground"
+                  onClick={() => setCheatSheetOpen(false)}
+                >
+                  Hide Cheat Sheet
+                </Button>
               </CardContent>
             </Card>
           </CollapsibleContent>
