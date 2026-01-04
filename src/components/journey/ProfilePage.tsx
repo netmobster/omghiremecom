@@ -336,6 +336,13 @@ const ProfilePage = () => {
           <div className="space-y-1">
             <h1 className="text-2xl sm:text-3xl font-display font-bold text-foreground">Jeremy "Jay" Wright - Full-Stack Marketer</h1>
             <p className="text-sm sm:text-base text-muted-foreground">A real profile by a real boy, even if it's satire</p>
+            <a 
+              href="/about" 
+              className="inline-flex items-center gap-1 text-sm text-primary hover:text-primary/80 transition-colors mt-1"
+            >
+              See more about Jay
+              <ChevronRight className="w-4 h-4" />
+            </a>
           </div>
         </section>
 
