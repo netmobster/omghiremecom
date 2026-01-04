@@ -13,7 +13,7 @@ const features = [{
 }, {
   icon: Gamepad2,
   title: "Interactive Journey",
-  description: "A multi-stage experience including a Tinder-style swipe game where you can only swipe right on my traits."
+  description: "A multi-stage experience including a swipe (okay, click!) game where you can only swipe right on my traits."
 }, {
   icon: ScanLine,
   title: "Fake LinkedIn Scanner",
@@ -41,7 +41,7 @@ const features = [{
 }, {
   icon: Database,
   title: "Backend Infrastructure",
-  description: "Powered by Lovable Cloud with Supabase for serverless functions and potential data storage."
+  description: "Powered by Lovable, Supabase, Resend, Google Cloud Console, Google Analytics, IFTTT, Airtable, ChatGPT / Gemini, NotebookLM, and Canva."
 }, {
   icon: Palette,
   title: "Custom Design System",
