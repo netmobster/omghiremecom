@@ -94,7 +94,7 @@ const HowBuilt = () => {
             <h1 className="text-3xl sm:text-4xl font-display font-bold text-foreground">
               How This Was Built
             </h1>
-            <p className="text-muted-foreground max-w-xl mx-auto">This entire site was built using Lovable and other tools — to create an interactive web app in the "show, don't tell" vein, while leaning on satire to highlight the absurdity of today's job search process. Can you hire me? Yes. Should you? Well, that's up to you!<span className="text-primary font-semibold">Lovable and other tools</span> — 
+            <p className="text-muted-foreground max-w-xl mx-auto">This entire site was built using Lovable and other tools — to create an interactive web app in the "show, don't tell" vein, while leaning on satire to highlight the absurdity of today's job search process. Can you hire me? Yes. Should you? Well, we'll see!<span className="text-primary font-semibold">Lovable and other tools</span> — 
               an AI-powered development platform that turns conversations into production-ready web applications.
             </p>
           </div>
