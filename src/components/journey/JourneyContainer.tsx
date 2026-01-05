@@ -8,7 +8,7 @@ import ThemeToggle from "@/components/ThemeToggle";
 import confetti from "canvas-confetti";
 import { useKonamiCode } from "@/hooks/useKonamiCode";
 import { useSecretWord } from "@/hooks/useSecretWord";
-import { useToast } from "@/hooks/use-toast";
+import { useAchievementToast } from "@/hooks/useAchievementToast";
 import { useEasterEggs } from "@/contexts/EasterEggContext";
 
 type Stage = "intro" | "swipe" | "portfolio" | "linkedin";
@@ -18,7 +18,7 @@ const JourneyContainer = () => {
   const [currentStage, setCurrentStage] = useState<Stage>("intro");
   const [konamiTriggered, setKonamiTriggered] = useState(false);
   const navigate = useNavigate();
-  const { toast } = useToast();
+  const { showAchievementToast } = useAchievementToast();
   const { discoverEgg } = useEasterEggs();
 
   // Konami code easter egg
@@ -54,23 +54,25 @@ const JourneyContainer = () => {
     
     frame();
     
-    toast({
+    showAchievementToast({
       title: "🎮 KONAMI CODE ACTIVATED!",
       description: "You're officially a person of culture. +30 hiring points.",
+      achievementName: "Konami Code Master",
     });
     
     // Reset after a while so they can do it again
     setTimeout(() => setKonamiTriggered(false), 10000);
-  }, [konamiTriggered, toast, discoverEgg]);
+  }, [konamiTriggered, showAchievementToast, discoverEgg]);
 
   // Secret word easter egg - typing "hire" anywhere
   const handleHireTyped = useCallback(() => {
     discoverEgg("hire");
-    toast({
+    showAchievementToast({
       title: "👀 Did you just type 'hire'?",
       description: "The subliminal messaging is working! Keep going...",
+      achievementName: "Subliminal Hire",
     });
-  }, [toast, discoverEgg]);
+  }, [showAchievementToast, discoverEgg]);
 
   useKonamiCode(handleKonamiCode);
   useSecretWord("hire", handleHireTyped);

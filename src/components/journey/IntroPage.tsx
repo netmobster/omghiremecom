@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { Sparkles, ArrowRight, Info, Scale, Quote, FastForward } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
 import confetti from "canvas-confetti";
 import { useEasterEggs } from "@/contexts/EasterEggContext";
+import { useAchievementToast } from "@/hooks/useAchievementToast";
 import Footer from "@/components/Footer";
 
 interface IntroPageProps {
@@ -15,7 +15,7 @@ interface IntroPageProps {
 const IntroPage = ({ onNext }: IntroPageProps) => {
   const [sparkleClicks, setSparkleClicks] = useState(0);
   const [termsOpen, setTermsOpen] = useState(false);
-  const { toast } = useToast();
+  const { showAchievementToast } = useAchievementToast();
   const { discoverEgg } = useEasterEggs();
 
   // Easter egg: click sparkles 7 times
@@ -32,9 +32,10 @@ const IntroPage = ({ onNext }: IntroPageProps) => {
         shapes: ['star'],
         colors: ['#ffd700', '#ffed4a', '#f6e05e'],
       });
-      toast({
+      showAchievementToast({
         title: "✨ Sparkle Master Unlocked!",
         description: "You clicked all the sparkles! You must really like shiny things.",
+        achievementName: "Sparkle Master",
       });
       setSparkleClicks(0);
     }
@@ -169,9 +170,10 @@ const IntroPage = ({ onNext }: IntroPageProps) => {
                     origin: { y: 0.6 },
                     colors: ['#ffd700', '#ff6b6b', '#4ecdc4', '#45b7d1'],
                   });
-                  toast({
+                  showAchievementToast({
                     title: "🕳️ Gazed Into The Abyss!",
                     description: "You read the fine print AND accepted? Bold move. The abyss gazes back.",
+                    achievementName: "Gazed Into The Abyss",
                   });
                   setTermsOpen(false);
                 }} 
