@@ -4,7 +4,6 @@ import IntroPage from "./IntroPage";
 import SwipeGame from "./SwipeGame";
 import PortfolioTease from "./PortfolioTease";
 import LinkedInScanner from "./LinkedInScanner";
-import JourneyProgress from "./JourneyProgress";
 import ThemeToggle from "@/components/ThemeToggle";
 import confetti from "canvas-confetti";
 import { useKonamiCode } from "@/hooks/useKonamiCode";
@@ -14,12 +13,6 @@ import { useEasterEggs } from "@/contexts/EasterEggContext";
 
 type Stage = "intro" | "swipe" | "portfolio" | "linkedin";
 
-const stageToStep: Record<Stage, number> = {
-  intro: 1,
-  swipe: 2,
-  portfolio: 3,
-  linkedin: 4,
-};
 
 const JourneyContainer = () => {
   const [currentStage, setCurrentStage] = useState<Stage>("intro");
@@ -99,8 +92,6 @@ const JourneyContainer = () => {
     }, 500);
   };
 
-  const currentStep = stageToStep[currentStage];
-
   const renderStage = () => {
     switch (currentStage) {
       case "intro":
@@ -119,7 +110,6 @@ const JourneyContainer = () => {
   return (
     <>
       <ThemeToggle />
-      <JourneyProgress currentStep={currentStep} totalSteps={5} />
       {renderStage()}
     </>
   );
