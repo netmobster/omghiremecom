@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
-import { Sparkles, ArrowRight, Info, Scale } from "lucide-react";
+import { Sparkles, ArrowRight, Info, Scale, Quote, FastForward } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import confetti from "canvas-confetti";
 import { useEasterEggs } from "@/contexts/EasterEggContext";
@@ -87,6 +88,19 @@ const IntroPage = ({ onNext }: IntroPageProps) => {
           </ul>
         </div>
 
+        {/* Social Proof Snippet */}
+        <div className="bg-card/30 backdrop-blur-sm rounded-xl p-4 border border-border/30">
+          <div className="flex items-start gap-3">
+            <Quote className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+            <div className="text-left">
+              <p className="text-sm text-foreground italic">
+                "Jeremy brings the rare combo of strategic thinking and hands-on execution. Also, genuinely fun to work with."
+              </p>
+              <p className="text-xs text-muted-foreground mt-2">— Former colleague, didn't even pay them to say this</p>
+            </div>
+          </div>
+        </div>
+
         {/* CTA Button */}
         <Button
           onClick={onNext}
@@ -96,6 +110,16 @@ const IntroPage = ({ onNext }: IntroPageProps) => {
           Let's Do This
           <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
         </Button>
+
+        {/* Skip to Profile link */}
+        <Link 
+          to="/realness" 
+          className="inline-flex items-center gap-1.5 text-xs text-muted-foreground/60 hover:text-muted-foreground transition-colors group"
+        >
+          <FastForward className="w-3 h-3" />
+          <span>In a hurry? Skip to profile</span>
+          <ArrowRight className="w-3 h-3 opacity-0 -ml-1 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+        </Link>
 
         <p className="text-xs text-muted-foreground">
           No actual hiring managers were harmed in the making of this experience.
