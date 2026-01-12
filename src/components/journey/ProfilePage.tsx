@@ -400,7 +400,7 @@ const ProfilePage = () => {
                     <p className="text-xs sm:text-sm text-muted-foreground">Discover how I collaborate best</p>
                   </div>
                 </div>
-                <Button variant="outline" size="sm" className="shrink-0 w-full sm:w-auto sm:ml-auto" onClick={() => window.open("https://worklovelanguage.lovable.app", "_blank")}>
+                <Button variant="outline" size="sm" className="shrink-0 w-full sm:w-auto sm:ml-auto" onClick={() => window.open("https://worklovelanguages.lovable.app", "_blank")}>
                   Take the Quiz
                   <ExternalLink className="ml-1 w-3 h-3" />
                 </Button>
