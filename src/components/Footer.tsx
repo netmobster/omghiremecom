@@ -37,6 +37,16 @@ const Footer = () => {
           About Me
         </Link>
         <span className="hidden sm:inline text-muted-foreground/30">•</span>
+        <a 
+          href="https://antigravity-showcase-hub.lovable.app" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="flex items-center gap-1.5 hover:text-foreground transition-colors"
+        >
+          <Briefcase className="w-4 h-4" />
+          Projects
+        </a>
+        <span className="hidden sm:inline text-muted-foreground/30">•</span>
         <Link 
           to="/how-built" 
           className="flex items-center gap-1.5 hover:text-foreground transition-colors"
