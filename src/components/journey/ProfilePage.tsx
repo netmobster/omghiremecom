@@ -311,7 +311,7 @@ const ProfilePage = () => {
   };
   return <div className="min-h-screen gradient-bg overflow-x-hidden print:bg-white print:text-black">
       <ThemeToggle />
-      <div className="max-w-2xl md:max-w-3xl mx-auto px-4 sm:px-6 space-y-10 sm:space-y-12 py-8 sm:py-12">
+      <div className="max-w-3xl md:max-w-4xl mx-auto px-4 sm:px-6 space-y-10 sm:space-y-12 py-8 sm:py-12">
         {/* Reading time indicator - clickable easter egg */}
         <div 
           onClick={handleReadingTimeClick}
