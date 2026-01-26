@@ -86,6 +86,15 @@ const Footer = () => {
           <Linkedin className="w-4 h-4" />
           LinkedIn
         </a>
+        <div className="w-full" />
+        <a 
+          href="https://omghireme.lovable.app/echo-timeline" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="flex items-center gap-1.5 hover:text-foreground transition-colors"
+        >
+          Echo Protocol Timeline
+        </a>
       </div>
     </footer>
   );
