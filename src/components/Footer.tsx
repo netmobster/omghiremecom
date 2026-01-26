@@ -95,6 +95,15 @@ const Footer = () => {
         >
           Echo Protocol Timeline
         </a>
+        <span className="hidden sm:inline text-muted-foreground/30">•</span>
+        <a 
+          href="https://echo-protocol-vr7keh9.gamma.site/" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="flex items-center gap-1.5 hover:text-foreground transition-colors"
+        >
+          Echo Investor Brief
+        </a>
       </div>
     </footer>
   );
